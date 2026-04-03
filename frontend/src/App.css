@@ -1,36 +1,38 @@
-.app {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  background: #f4f1ea;
-}
-
-.card {
-  width: min(560px, 100%);
-  background: #ffffff;
-  border: 1px solid #d8d2c7;
-  border-radius: 20px;
-  padding: 32px;
-  box-shadow: 0 20px 60px rgba(63, 51, 36, 0.08);
-}
-
-.eyebrow {
-  margin: 0 0 12px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #7a5c2e;
-}
-
-h1 {
-  margin: 0 0 12px;
-  color: #1f1a14;
-}
-
-.status {
+html,
+body,
+#root {
   margin: 0;
-  font-size: 18px;
-  color: #3a3127;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.window-bar {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  background: #fff;
+  border-bottom: 1px solid #c7c7c7;
+}
+
+.window-bar img {
+  width: 25px;
+  height: 25px;
+}
+
+.window-bar h1 {
+  margin: 2px 0 0;
+  font-size: 16px;
+  color: #000;
 }
