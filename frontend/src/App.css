@@ -1,19 +1,36 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
   margin: 0;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
   font-family: Arial, sans-serif;
-  box-sizing: border-box;
+  color: black;
+  background: #fff;
 }
 
 .app-shell {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+}
+
+.workspace {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border: 5px solid #4c7ed1;
+  background: #fff;
 }
 
 .window-bar {
@@ -23,7 +40,8 @@ body {
   gap: 10px;
   padding: 0 10px;
   background: #fff;
-  border-bottom: 1px solid #c7c7c7;
+  border-bottom: 1px solid black;
+  flex-shrink: 0;
 }
 
 .window-bar img {
@@ -32,36 +50,41 @@ body {
 }
 
 .window-bar h1 {
-  margin: 2px 0 0;
+  margin: 0;
   font-size: 16px;
-  color: #000;
+  color: black;
+  font-weight: 500;
 }
 
-.workspace {
+.workspace-body {
+  flex: 1;
+  min-height: 0;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 .sidebar {
-  width: 270px;
-  background: #ffffff;
-  padding: 16px 12px;
+  width: 300px;
+  flex-shrink: 0;
+  background: #fff;
+  padding: 10px 10px 8px;
+  border-right: 5px solid #6fb246;
+  overflow: hidden;
 }
 
 .tabs {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .tab {
   border: 1px solid black;
   color: black;
-  background: #ffffff;
-  padding: 12px 18px;
+  background: #fff;
+  padding: 12px 20px;
   font-size: 12px;
+  line-height: 1.1;
   cursor: default;
 }
 
@@ -70,15 +93,16 @@ body {
 }
 
 .panel-box {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid black;
-  margin-bottom: 18px;
-  padding: 5px;
+  margin-bottom: 10px;
+  padding: 4px;
 }
 
 .panel-box h2 {
   margin: 0;
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 1.1;
   color: black;
   text-decoration: underline;
 }
@@ -87,20 +111,27 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 16px;
-  font-size: 18px;
-  color: #222;
+  min-height: 48px;
+  padding: 0 14px;
+  font-size: 16px;
+  line-height: 1.1;
+  color: black;
 }
 
 .panel-box-highlight {
+  min-height: 48px;
   background: #f0b400;
-  padding: 8px 16px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .panel-box-highlight h2 {
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
+  line-height: 1.1;
 }
 
 .geometry-box {
@@ -111,8 +142,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
-  padding: 16px 16px 0;
+  gap: 10px;
+  padding: 12px 12px 0;
 }
 
 .mini-button {
@@ -120,23 +151,25 @@ body {
   background: #f0b400;
   color: black;
   font-size: 11px;
-  padding: 10px 12px;
+  line-height: 1.15;
+  padding: 12px 14px;
   text-align: center;
 }
 
 .field-list {
   list-style: none;
   margin: 0;
-  padding: 16px;
+  padding: 12px;
 }
 
 .field-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 16px;
-  color: #222;
-  margin-bottom: 28px;
+  font-size: 15px;
+  line-height: 1.1;
+  color: black;
+  margin-bottom: 18px;
 }
 
 .field-item:last-child {
@@ -148,7 +181,7 @@ body {
 }
 
 .material-box .field-list {
-  padding-top: 22px;
+  padding-top: 14px;
 }
 
 .dropdown-icon {
@@ -158,4 +191,56 @@ body {
   border: 1px solid black;
   clip-path: polygon(0 0, 100% 0, 100% 74%, 50% 100%, 0 74%);
   flex-shrink: 0;
+}
+
+.reference-panel {
+  flex: 1;
+  min-width: 0;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.reference-banner {
+  align-self: flex-start;
+  display: inline-block;
+  width: auto;
+  background: #6fb246;
+  color: black;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px 18px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.reference-banner span {
+  text-transform: none;
+  font-weight: 500;
+}
+
+.reference-body {
+  flex: 1;
+  min-height: 0;
+  padding: 18px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.reference-image-card {
+  width: min(92%, 760px);
+  max-height: 100%;
+  background: #fff;
+  border: 1px solid #4c7ed1;
+  padding: 10px;
+}
+
+.reference-image {
+  width: 100%;
+  max-height: calc(100vh - 130px);
+  display: block;
+  object-fit: contain;
 }
