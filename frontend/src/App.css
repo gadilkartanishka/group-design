@@ -1,0 +1,36 @@
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #f4f1ea;
+}
+
+.card {
+  width: min(560px, 100%);
+  background: #ffffff;
+  border: 1px solid #d8d2c7;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(63, 51, 36, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a5c2e;
+}
+
+h1 {
+  margin: 0 0 12px;
+  color: #1f1a14;
+}
+
+.status {
+  margin: 0;
+  font-size: 18px;
+  color: #3a3127;
+}
