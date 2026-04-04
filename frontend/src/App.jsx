@@ -8,6 +8,9 @@ import ProjectLocationPanel from "./components/ProjectLocationPanel";
 function App() {
   const [structureType, setStructureType] = useState("");
   const [activePanel, setActivePanel] = useState("reference");
+  const [locationMode, setLocationMode] = useState("location");
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
 
   return (
     <main className="app-shell">
@@ -23,7 +26,14 @@ function App() {
           />
 
           {activePanel === "project-location" ? (
-            <ProjectLocationPanel />
+            <ProjectLocationPanel
+              locationMode={locationMode}
+              setLocationMode={setLocationMode}
+              selectedState={selectedState}
+              setSelectedState={setSelectedState}
+              selectedDistrict={selectedDistrict}
+              setSelectedDistrict={setSelectedDistrict}
+            />
           ) : (
             <ReferencePanel />
           )}

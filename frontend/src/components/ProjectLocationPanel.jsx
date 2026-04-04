@@ -1,4 +1,67 @@
-function ProjectLocationPanel() {
+import { useState } from "react";
+
+const locationData = {
+  Maharashtra: {
+    Mumbai: {
+      wind: "44 m/sec",
+      seismic: "Zone III, 0.16",
+      temperature: "22°C to 38°C",
+    },
+    Pune: {
+      wind: "39 m/sec",
+      seismic: "Zone III, 0.16",
+      temperature: "18°C to 36°C",
+    },
+  },
+  Karnataka: {
+    Bengaluru: {
+      wind: "33 m/sec",
+      seismic: "Zone II, 0.10",
+      temperature: "19°C to 34°C",
+    },
+  },
+  Delhi: {
+    "Central Delhi": {
+      wind: "47 m/sec",
+      seismic: "Zone IV, 0.24",
+      temperature: "7°C to 43°C",
+    },
+  },
+};
+
+function ProjectLocationPanel({
+  locationMode,
+  setLocationMode,
+  selectedState,
+  setSelectedState,
+  selectedDistrict,
+  setSelectedDistrict,
+}) {
+  const [showStateMenu, setShowStateMenu] = useState(false);
+  const [showDistrictMenu, setShowDistrictMenu] = useState(false);
+
+  const states = Object.keys(locationData);
+  const districts = selectedState
+    ? Object.keys(locationData[selectedState])
+    : [];
+
+  const result =
+    selectedState && selectedDistrict
+      ? locationData[selectedState][selectedDistrict]
+      : null;
+
+  const handleStateSelect = (state) => {
+    setSelectedState(state);
+    setSelectedDistrict("");
+    setShowStateMenu(false);
+    setShowDistrictMenu(false);
+  };
+
+  const handleDistrictSelect = (district) => {
+    setSelectedDistrict(district);
+    setShowDistrictMenu(false);
+  };
+
   return (
     <section className="reference-panel">
       <div className="reference-banner">
@@ -8,33 +71,114 @@ function ProjectLocationPanel() {
       <div className="reference-body project-location-body">
         <div className="project-location-card">
           <div className="project-location-row">
-            <div className="project-option">
+            <button
+              type="button"
+              className="project-option project-option-button"
+              onClick={() => setLocationMode("location")}
+            >
               <span className="project-bullet" aria-hidden="true" />
               <span>Enter Location Name</span>
-            </div>
+            </button>
 
             <div className="project-select-group">
               <span>State</span>
-              <span className="dropdown-icon" aria-hidden="true" />
+
+              <div className="project-dropdown-box">
+                <button
+                  type="button"
+                  className="project-dropdown-trigger"
+                  onClick={() => {
+                    if (locationMode !== "location") return;
+                    setShowStateMenu((prev) => !prev);
+                    setShowDistrictMenu(false);
+                  }}
+                  disabled={locationMode !== "location"}
+                >
+                  <span>{selectedState || ""}</span>
+                  <span className="dropdown-icon" aria-hidden="true" />
+                </button>
+
+                {showStateMenu && (
+                  <div className="project-dropdown-menu">
+                    {states.map((state) => (
+                      <button
+                        key={state}
+                        type="button"
+                        className="project-dropdown-item"
+                        onClick={() => handleStateSelect(state)}
+                      >
+                        {state}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="project-select-group">
               <span>District</span>
-              <span className="dropdown-icon" aria-hidden="true" />
+
+              <div className="project-dropdown-box">
+                <button
+                  type="button"
+                  className="project-dropdown-trigger"
+                  onClick={() => {
+                    if (locationMode !== "location" || !selectedState) return;
+                    setShowDistrictMenu((prev) => !prev);
+                    setShowStateMenu(false);
+                  }}
+                  disabled={locationMode !== "location" || !selectedState}
+                >
+                  <span>{selectedDistrict || ""}</span>
+                  <span className="dropdown-icon" aria-hidden="true" />
+                </button>
+
+                {showDistrictMenu && (
+                  <div className="project-dropdown-menu">
+                    {districts.map((district) => (
+                      <button
+                        key={district}
+                        type="button"
+                        className="project-dropdown-item"
+                        onClick={() => handleDistrictSelect(district)}
+                      >
+                        {district}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
-          <div className="project-result-box">
-            <p>IRC 6 (2017) Resulting Values:</p>
-            <p>Basic Wind Speed (m/sec)</p>
-            <p>Seismic Zone and Zone Factor</p>
-            <p>Shade Air Temperature (°C)</p>
-          </div>
+          {locationMode === "location" && result && (
+            <div className="project-result-box">
+              <p>IRC 6 (2017) Resulting Values:</p>
+              <p>Basic Wind Speed: {result.wind}</p>
+              <p>Seismic Zone and Zone Factor: {result.seismic}</p>
+              <p>Shade Air Temperature: {result.temperature}</p>
+            </div>
+          )}
 
-          <div className="project-option">
-            <span className="project-bullet" aria-hidden="true" />
+          {locationMode === "custom" && (
+            <div className="project-custom-placeholder">
+              Custom loading parameters popup will be added next.
+            </div>
+          )}
+
+          <button
+            type="button"
+            className="project-option project-option-button"
+            onClick={() => setLocationMode("custom")}
+          >
+            <span
+              className={`project-bullet ${
+                locationMode === "custom" ? "project-bullet-active" : ""
+              }`}
+              aria-hidden="true"
+            />
             <span>Tabulate Custom Loading Parameters</span>
-          </div>
+          </button>
         </div>
       </div>
     </section>

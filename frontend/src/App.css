@@ -391,3 +391,73 @@ body {
 .project-result-box p:last-child {
   margin-bottom: 0;
 }
+.project-option-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: black;
+  cursor: pointer;
+}
+
+.project-select-group {
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.project-dropdown-box {
+  position: relative;
+}
+
+.project-dropdown-trigger {
+  min-width: 90px;
+  border: none;
+  background: transparent;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.project-dropdown-trigger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.project-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  min-width: 140px;
+  background: #fff;
+  border: 1px solid black;
+  z-index: 10;
+}
+
+.project-dropdown-item {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  background: #fff;
+  color: black;
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.project-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.project-dropdown-item:hover {
+  background: #6fb246;
+}
