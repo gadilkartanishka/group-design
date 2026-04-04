@@ -11,6 +11,14 @@ function App() {
   const [locationMode, setLocationMode] = useState("location");
   const [selectedState, setSelectedState] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [showCustomModal, setShowCustomModal] = useState(false);
+  const [customLoadingValues, setCustomLoadingValues] = useState({
+    wind: "",
+    seismicZone: "",
+    zoneFactor: "",
+    maxTemp: "",
+    minTemp: "",
+  });
 
   return (
     <main className="app-shell">
@@ -33,6 +41,10 @@ function App() {
               setSelectedState={setSelectedState}
               selectedDistrict={selectedDistrict}
               setSelectedDistrict={setSelectedDistrict}
+              showCustomModal={showCustomModal}
+              setShowCustomModal={setShowCustomModal}
+              customLoadingValues={customLoadingValues}
+              setCustomLoadingValues={setCustomLoadingValues}
             />
           ) : (
             <ReferencePanel />

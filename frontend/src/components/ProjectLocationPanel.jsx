@@ -36,9 +36,14 @@ function ProjectLocationPanel({
   setSelectedState,
   selectedDistrict,
   setSelectedDistrict,
+  showCustomModal,
+  setShowCustomModal,
+  customLoadingValues,
+  setCustomLoadingValues,
 }) {
   const [showStateMenu, setShowStateMenu] = useState(false);
   const [showDistrictMenu, setShowDistrictMenu] = useState(false);
+  const [draftValues, setDraftValues] = useState(customLoadingValues);
 
   const states = Object.keys(locationData);
   const districts = selectedState
@@ -46,9 +51,16 @@ function ProjectLocationPanel({
     : [];
 
   const result =
-    selectedState && selectedDistrict
+    locationMode === "location" && selectedState && selectedDistrict
       ? locationData[selectedState][selectedDistrict]
       : null;
+
+  const hasCustomValues =
+    customLoadingValues.wind ||
+    customLoadingValues.seismicZone ||
+    customLoadingValues.zoneFactor ||
+    customLoadingValues.maxTemp ||
+    customLoadingValues.minTemp;
 
   const handleStateSelect = (state) => {
     setSelectedState(state);
@@ -60,6 +72,17 @@ function ProjectLocationPanel({
   const handleDistrictSelect = (district) => {
     setSelectedDistrict(district);
     setShowDistrictMenu(false);
+  };
+
+  const openCustomModal = () => {
+    setLocationMode("custom");
+    setDraftValues(customLoadingValues);
+    setShowCustomModal(true);
+  };
+
+  const saveCustomValues = () => {
+    setCustomLoadingValues(draftValues);
+    setShowCustomModal(false);
   };
 
   return (
@@ -160,26 +183,119 @@ function ProjectLocationPanel({
             </div>
           )}
 
-          {locationMode === "custom" && (
-            <div className="project-custom-placeholder">
-              Custom loading parameters popup will be added next.
+          {locationMode === "custom" && hasCustomValues && (
+            <div className="project-result-box">
+              <p>Custom Loading Values:</p>
+              <p>Basic Wind Speed: {customLoadingValues.wind}</p>
+              <p>
+                Seismic Zone and Zone Factor: {customLoadingValues.seismicZone},{" "}
+                {customLoadingValues.zoneFactor}
+              </p>
+              <p>
+                Shade Air Temperature: {customLoadingValues.minTemp}°C to{" "}
+                {customLoadingValues.maxTemp}°C
+              </p>
             </div>
           )}
 
           <button
             type="button"
             className="project-option project-option-button"
-            onClick={() => setLocationMode("custom")}
+            onClick={openCustomModal}
           >
-            <span
-              className={`project-bullet ${
-                locationMode === "custom" ? "project-bullet-active" : ""
-              }`}
-              aria-hidden="true"
-            />
+            <span className="project-bullet" aria-hidden="true" />
             <span>Tabulate Custom Loading Parameters</span>
           </button>
         </div>
+
+        {showCustomModal && (
+          <div className="custom-modal-overlay">
+            <div className="custom-modal">
+              <h3>Custom Loading Parameters</h3>
+
+              <div className="custom-modal-grid">
+                <label>
+                  Basic Wind Speed
+                  <input
+                    type="text"
+                    value={draftValues.wind}
+                    onChange={(event) =>
+                      setDraftValues({
+                        ...draftValues,
+                        wind: event.target.value,
+                      })
+                    }
+                  />
+                </label>
+
+                <label>
+                  Seismic Zone
+                  <input
+                    type="text"
+                    value={draftValues.seismicZone}
+                    onChange={(event) =>
+                      setDraftValues({
+                        ...draftValues,
+                        seismicZone: event.target.value,
+                      })
+                    }
+                  />
+                </label>
+
+                <label>
+                  Zone Factor
+                  <input
+                    type="text"
+                    value={draftValues.zoneFactor}
+                    onChange={(event) =>
+                      setDraftValues({
+                        ...draftValues,
+                        zoneFactor: event.target.value,
+                      })
+                    }
+                  />
+                </label>
+
+                <label>
+                  Max Shade Air Temperature
+                  <input
+                    type="text"
+                    value={draftValues.maxTemp}
+                    onChange={(event) =>
+                      setDraftValues({
+                        ...draftValues,
+                        maxTemp: event.target.value,
+                      })
+                    }
+                  />
+                </label>
+
+                <label>
+                  Min Shade Air Temperature
+                  <input
+                    type="text"
+                    value={draftValues.minTemp}
+                    onChange={(event) =>
+                      setDraftValues({
+                        ...draftValues,
+                        minTemp: event.target.value,
+                      })
+                    }
+                  />
+                </label>
+              </div>
+
+              <div className="custom-modal-actions">
+                <button type="button" onClick={() => setShowCustomModal(false)}>
+                  Cancel
+                </button>
+                <button type="button" onClick={saveCustomValues}>
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

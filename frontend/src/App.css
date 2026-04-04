@@ -461,3 +461,65 @@ body {
 .project-dropdown-item:hover {
   background: #6fb246;
 }
+.custom-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.custom-modal {
+  width: min(560px, 100%);
+  background: #fff;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+.custom-modal h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.custom-modal-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.custom-modal-grid label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.custom-modal-grid input {
+  border: 1px solid black;
+  background: #fff;
+  color: black;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.custom-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.custom-modal-actions button {
+  border: 1px solid black;
+  background: #fff;
+  color: black;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.custom-modal-actions button:last-child {
+  background: #f0b400;
+}
