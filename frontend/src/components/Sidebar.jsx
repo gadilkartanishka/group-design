@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-function Sidebar({ structureType, setStructureType }) {
+function Sidebar({
+  structureType,
+  setStructureType,
+  activePanel,
+  setActivePanel,
+}) {
   const [showStructureMenu, setShowStructureMenu] = useState(false);
   const isOther = structureType === "Other";
 
@@ -54,11 +59,16 @@ function Sidebar({ structureType, setStructureType }) {
         <p className="structure-message">Other structures not included.</p>
       )}
 
-      <div
-        className={`panel-box panel-box-highlight ${isOther ? "panel-disabled" : ""}`}
+      <button
+        type="button"
+        className={`panel-box panel-box-highlight panel-box-button ${
+          isOther ? "panel-disabled" : ""
+        } ${activePanel === "project-location" ? "panel-box-active" : ""}`}
+        onClick={() => setActivePanel("project-location")}
+        disabled={isOther}
       >
         <h2>Project Location</h2>
-      </div>
+      </button>
 
       <div
         className={`panel-box geometry-box ${isOther ? "panel-disabled" : ""}`}

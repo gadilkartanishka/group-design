@@ -310,3 +310,84 @@ body {
 .mini-button:disabled {
   cursor: not-allowed;
 }
+.panel-box-button {
+  width: 100%;
+  cursor: pointer;
+}
+
+.panel-box-button:disabled {
+  cursor: not-allowed;
+}
+
+.panel-box-active {
+  outline: 2px solid #4c7ed1;
+  outline-offset: -2px;
+}
+
+.project-location-body {
+  justify-content: center;
+  align-items: center;
+}
+
+.project-location-card {
+  width: min(78%, 760px);
+  background: #fff;
+  border: 1px solid black;
+  padding: 18px 22px;
+}
+
+.project-location-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.project-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.project-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.project-bullet {
+  width: 18px;
+  height: 18px;
+  background: #f77a14;
+  border: 1px solid black;
+  flex-shrink: 0;
+}
+
+.project-select-group {
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.project-result-box {
+  border: 1px solid #6fb246;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+}
+
+.project-result-box p {
+  margin: 0 0 8px;
+  color: #6fb246;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.project-result-box p:last-child {
+  margin-bottom: 0;
+}
