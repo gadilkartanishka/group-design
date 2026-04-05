@@ -1,30 +1,34 @@
 import { useState } from "react";
 
-const locationData = {
+  const locationData = {
   Maharashtra: {
     Mumbai: {
       wind: "44 m/sec",
       seismic: "Zone III, 0.16",
-      temperature: "22°C to 38°C",
+      minTemp: "22°C",
+      maxTemp: "38°C",
     },
     Pune: {
       wind: "39 m/sec",
       seismic: "Zone III, 0.16",
-      temperature: "18°C to 36°C",
+      minTemp: "18°C",
+      maxTemp: "36°C",
     },
   },
   Karnataka: {
     Bengaluru: {
       wind: "33 m/sec",
       seismic: "Zone II, 0.10",
-      temperature: "19°C to 34°C",
+      minTemp: "19°C",
+      maxTemp: "34°C",
     },
   },
   Delhi: {
     "Central Delhi": {
       wind: "47 m/sec",
       seismic: "Zone IV, 0.24",
-      temperature: "7°C to 43°C",
+      minTemp: "7°C",
+      maxTemp: "43°C",
     },
   },
 };
@@ -179,7 +183,8 @@ function ProjectLocationPanel({
               <p>IRC 6 (2017) Resulting Values:</p>
               <p>Basic Wind Speed: {result.wind}</p>
               <p>Seismic Zone and Zone Factor: {result.seismic}</p>
-              <p>Shade Air Temperature: {result.temperature}</p>
+              <p>Minimum Shade Air Temperature: {result.minTemp}</p>
+              <p>Maximum Shade Air Temperature: {result.maxTemp}</p>
             </div>
           )}
 
@@ -191,10 +196,8 @@ function ProjectLocationPanel({
                 Seismic Zone and Zone Factor: {customLoadingValues.seismicZone},{" "}
                 {customLoadingValues.zoneFactor}
               </p>
-              <p>
-                Shade Air Temperature: {customLoadingValues.minTemp}°C to{" "}
-                {customLoadingValues.maxTemp}°C
-              </p>
+              <p>Minimum Shade Air Temperature: {customLoadingValues.minTemp}°C</p>
+              <p>Maximum Shade Air Temperature: {customLoadingValues.maxTemp}°C</p>
             </div>
           )}
 

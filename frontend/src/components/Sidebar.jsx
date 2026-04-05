@@ -13,6 +13,14 @@ function Sidebar({
   setFootpath,
   skewAngle,
   setSkewAngle,
+  showGeometryModal,
+  setShowGeometryModal,
+  girderSpacing,
+  setGirderSpacing,
+  numberOfGirders,
+  setNumberOfGirders,
+  deckOverhangWidth,
+  setDeckOverhangWidth,
 }) {
   const [showStructureMenu, setShowStructureMenu] = useState(false);
   const [showFootpathMenu, setShowFootpathMenu] = useState(false);
@@ -22,6 +30,14 @@ function Sidebar({
   const spanNumber = Number(span);
   const carriagewayNumber = Number(carriagewayWidth);
   const skewAngleNumber = Number(skewAngle);
+  const spacingNumber = Number(girderSpacing);
+  const girdersNumber = Number(numberOfGirders);
+  const overhangNumber = Number(deckOverhangWidth);
+  const overallBridgeWidth =
+    carriagewayWidth !== "" ? carriagewayNumber + 5 : 0;
+  const spacingProvided = girderSpacing !== "";
+  const girdersProvided = numberOfGirders !== "";
+  const overhangProvided = deckOverhangWidth !== "";
 
   const spanError =
     span !== "" && (spanNumber < 20 || spanNumber > 45)
@@ -39,6 +55,33 @@ function Sidebar({
       ? "IRC 24 (2010) requires detailed analysis."
       : "";
 
+  let geometryModalError = "";
+
+  if (showGeometryModal && carriagewayWidth === "") {
+    geometryModalError = "Enter carriageway width first.";
+  } else if (spacingProvided && spacingNumber >= overallBridgeWidth) {
+    geometryModalError = "Girder spacing must be less than overall bridge width.";
+  } else if (overhangProvided && overhangNumber >= overallBridgeWidth) {
+    geometryModalError =
+      "Deck overhang width must be less than overall bridge width.";
+  } else if (
+    spacingProvided &&
+    overhangProvided &&
+    girdersProvided &&
+    spacingNumber > 0
+  ) {
+    const expectedGirders = (overallBridgeWidth - overhangNumber) / spacingNumber;
+    const integerGirders = Number.isInteger(expectedGirders);
+    if (
+      !Number.isFinite(expectedGirders) ||
+      !integerGirders ||
+      expectedGirders !== girdersNumber
+    ) {
+      geometryModalError =
+        "Inputs must satisfy (Overall Width - Overhang) / Spacing = No. of Girders.";
+    }
+  }
+
   const handleStructureSelect = (value) => {
     setStructureType(value);
     setShowStructureMenu(false);
@@ -47,6 +90,71 @@ function Sidebar({
   const handleFootpathSelect = (value) => {
     setFootpath(value);
     setShowFootpathMenu(false);
+  };
+
+  const syncFromSpacing = (spacingValue, overhangValue) => {
+    const spacing = Number(spacingValue);
+    const overhang = Number(overhangValue);
+
+    if (
+      !Number.isFinite(spacing) ||
+      spacing <= 0 ||
+      !Number.isFinite(overhang) ||
+      overallBridgeWidth <= 0
+    ) {
+      return;
+    }
+
+    const calculatedGirders = (overallBridgeWidth - overhang) / spacing;
+    if (Number.isFinite(calculatedGirders) && Number.isInteger(calculatedGirders)) {
+      setNumberOfGirders(String(calculatedGirders));
+    } else {
+      setNumberOfGirders("");
+    }
+  };
+
+  const syncFromGirders = (girdersValue, overhangValue) => {
+    const girders = Number(girdersValue);
+    const overhang = Number(overhangValue);
+
+    if (
+      !Number.isFinite(girders) ||
+      girders <= 0 ||
+      !Number.isFinite(overhang) ||
+      overallBridgeWidth <= 0
+    ) {
+      return;
+    }
+
+    const calculatedSpacing = (overallBridgeWidth - overhang) / girders;
+    if (Number.isFinite(calculatedSpacing) && calculatedSpacing > 0) {
+      setGirderSpacing(calculatedSpacing.toFixed(1));
+    } else {
+      setGirderSpacing("");
+    }
+  };
+
+  const handleSpacingChange = (event) => {
+    const value = event.target.value;
+    setGirderSpacing(value);
+    syncFromSpacing(value, deckOverhangWidth);
+  };
+
+  const handleGirdersChange = (event) => {
+    const value = event.target.value;
+    setNumberOfGirders(value);
+    syncFromGirders(value, deckOverhangWidth);
+  };
+
+  const handleOverhangChange = (event) => {
+    const value = event.target.value;
+    setDeckOverhangWidth(value);
+
+    if (girdersProvided) {
+      syncFromGirders(numberOfGirders, value);
+    } else {
+      syncFromSpacing(girderSpacing, value);
+    }
   };
 
   return (
@@ -110,7 +218,12 @@ function Sidebar({
       >
         <header className="panel-box-header">
           <h2>Geometric Details</h2>
-          <button type="button" className="mini-button" disabled={isOther}>
+          <button
+            type="button"
+            className="mini-button"
+            disabled={isOther}
+            onClick={() => setShowGeometryModal(true)}
+          >
             Modify
             <br />
             Additional
@@ -224,6 +337,61 @@ function Sidebar({
           </li>
         </ul>
       </div>
+
+      {showGeometryModal && (
+        <div className="custom-modal-overlay">
+          <div className="custom-modal geometry-modal">
+            <h3>Modify Additional Geometry</h3>
+
+            <p className="geometry-modal-meta">
+              Overall Bridge Width = Carriageway Width + 5 ={" "}
+              {overallBridgeWidth > 0 ? overallBridgeWidth.toFixed(2) : "--"} m
+            </p>
+
+            <div className="custom-modal-grid geometry-modal-grid">
+              <label>
+                Girder Spacing (m)
+                <input
+                  type="number"
+                  step="0.1"
+                  value={girderSpacing}
+                  onChange={handleSpacingChange}
+                />
+              </label>
+
+              <label>
+                No. of Girders
+                <input
+                  type="number"
+                  step="1"
+                  value={numberOfGirders}
+                  onChange={handleGirdersChange}
+                />
+              </label>
+
+              <label>
+                Deck Overhang Width (m)
+                <input
+                  type="number"
+                  step="0.1"
+                  value={deckOverhangWidth}
+                  onChange={handleOverhangChange}
+                />
+              </label>
+            </div>
+
+            {geometryModalError && (
+              <p className="field-error geometry-modal-error">{geometryModalError}</p>
+            )}
+
+            <div className="custom-modal-actions">
+              <button type="button" onClick={() => setShowGeometryModal(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </aside>
   );
 }

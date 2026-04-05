@@ -25,6 +25,10 @@ function App() {
   const [carriagewayWidth, setCarriagewayWidth] = useState("");
   const [footpath, setFootpath] = useState("");
   const [skewAngle, setSkewAngle] = useState("");
+  const [showGeometryModal, setShowGeometryModal] = useState(false);
+  const [girderSpacing, setGirderSpacing] = useState("");
+  const [numberOfGirders, setNumberOfGirders] = useState("");
+  const [deckOverhangWidth, setDeckOverhangWidth] = useState("");
 
   return (
     <main className="app-shell">
@@ -45,6 +49,14 @@ function App() {
             setFootpath={setFootpath}
             skewAngle={skewAngle}
             setSkewAngle={setSkewAngle}
+            showGeometryModal={showGeometryModal}
+            setShowGeometryModal={setShowGeometryModal}
+            girderSpacing={girderSpacing}
+            setGirderSpacing={setGirderSpacing}
+            numberOfGirders={numberOfGirders}
+            setNumberOfGirders={setNumberOfGirders}
+            deckOverhangWidth={deckOverhangWidth}
+            setDeckOverhangWidth={setDeckOverhangWidth}
           />
 
           {activePanel === "project-location" ? (

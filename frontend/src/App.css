@@ -496,6 +496,21 @@ body {
 .custom-modal-actions button:last-child {
   background: #f0b400;
 }
+
+.geometry-modal {
+  width: min(520px, 100%);
+}
+
+.geometry-modal-meta {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.geometry-modal-grid {
+  gap: 14px;
+}
+
 .geometry-fields {
   padding: 12px;
   display: grid;
@@ -548,4 +563,8 @@ body {
   font-size: 12px;
   line-height: 1.2;
   color: red;
+}
+
+.geometry-modal-error {
+  margin-top: 12px;
 }
