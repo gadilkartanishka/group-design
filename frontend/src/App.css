@@ -107,17 +107,6 @@ body {
   text-decoration: underline;
 }
 
-.type-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 48px;
-  padding: 0 14px;
-  font-size: 16px;
-  line-height: 1.1;
-  color: black;
-}
-
 .panel-box-highlight {
   min-height: 48px;
   background: #f0b400;
@@ -351,28 +340,12 @@ body {
   font-size: 16px;
 }
 
-.project-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-}
-
 .project-bullet {
   width: 18px;
   height: 18px;
   background: #f77a14;
   border: 1px solid black;
   flex-shrink: 0;
-}
-
-.project-select-group {
-  min-width: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 16px;
 }
 
 .project-result-box {
@@ -522,4 +495,57 @@ body {
 
 .custom-modal-actions button:last-child {
   background: #f0b400;
+}
+.geometry-fields {
+  padding: 12px;
+  display: grid;
+  gap: 14px;
+}
+
+.geometry-field {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 4px;
+}
+
+.geometry-field label {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.1;
+  color: black;
+}
+
+.geometry-field input {
+  width: 90px;
+  border: 1px solid black;
+  background: #fff;
+  color: black;
+  padding: 6px 8px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  text-align: left;
+  outline: none;
+}
+
+.geometry-field .project-dropdown-box {
+  width: 90px;
+}
+
+.geometry-field .project-dropdown-trigger {
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid black;
+  background: #fff;
+  padding: 6px 8px;
+  min-width: 0;
+}
+
+.field-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.2;
+  color: red;
 }

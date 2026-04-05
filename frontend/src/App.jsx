@@ -8,6 +8,7 @@ import ProjectLocationPanel from "./components/ProjectLocationPanel";
 function App() {
   const [structureType, setStructureType] = useState("");
   const [activePanel, setActivePanel] = useState("reference");
+
   const [locationMode, setLocationMode] = useState("location");
   const [selectedState, setSelectedState] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -20,6 +21,11 @@ function App() {
     minTemp: "",
   });
 
+  const [span, setSpan] = useState("");
+  const [carriagewayWidth, setCarriagewayWidth] = useState("");
+  const [footpath, setFootpath] = useState("");
+  const [skewAngle, setSkewAngle] = useState("");
+
   return (
     <main className="app-shell">
       <section className="workspace">
@@ -31,6 +37,14 @@ function App() {
             setStructureType={setStructureType}
             activePanel={activePanel}
             setActivePanel={setActivePanel}
+            span={span}
+            setSpan={setSpan}
+            carriagewayWidth={carriagewayWidth}
+            setCarriagewayWidth={setCarriagewayWidth}
+            footpath={footpath}
+            setFootpath={setFootpath}
+            skewAngle={skewAngle}
+            setSkewAngle={setSkewAngle}
           />
 
           {activePanel === "project-location" ? (

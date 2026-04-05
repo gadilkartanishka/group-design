@@ -5,13 +5,48 @@ function Sidebar({
   setStructureType,
   activePanel,
   setActivePanel,
+  span,
+  setSpan,
+  carriagewayWidth,
+  setCarriagewayWidth,
+  footpath,
+  setFootpath,
+  skewAngle,
+  setSkewAngle,
 }) {
   const [showStructureMenu, setShowStructureMenu] = useState(false);
+  const [showFootpathMenu, setShowFootpathMenu] = useState(false);
+
   const isOther = structureType === "Other";
+
+  const spanNumber = Number(span);
+  const carriagewayNumber = Number(carriagewayWidth);
+  const skewAngleNumber = Number(skewAngle);
+
+  const spanError =
+    span !== "" && (spanNumber < 20 || spanNumber > 45)
+      ? "Outside the software range."
+      : "";
+
+  const carriagewayError =
+    carriagewayWidth !== "" &&
+    (carriagewayNumber < 4.25 || carriagewayNumber >= 24)
+      ? "Width must be at least 4.25 m and less than 24 m."
+      : "";
+
+  const skewAngleError =
+    skewAngle !== "" && (skewAngleNumber < -15 || skewAngleNumber > 15)
+      ? "IRC 24 (2010) requires detailed analysis."
+      : "";
 
   const handleStructureSelect = (value) => {
     setStructureType(value);
     setShowStructureMenu(false);
+  };
+
+  const handleFootpathSelect = (value) => {
+    setFootpath(value);
+    setShowFootpathMenu(false);
   };
 
   return (
@@ -84,15 +119,89 @@ function Sidebar({
           </button>
         </header>
 
-        <ul className="field-list">
-          <li className="field-item">Span (m):</li>
-          <li className="field-item">Carriageway Width (m):</li>
-          <li className="field-item field-item-dropdown">
-            Footpath
-            <span className="dropdown-icon" aria-hidden="true" />
-          </li>
-          <li className="field-item">Skew Angle (degrees):</li>
-        </ul>
+        <div className="geometry-fields">
+          <div className="geometry-field">
+            <label htmlFor="span-input">Span (m):</label>
+            <input
+              id="span-input"
+              type="number"
+              value={span}
+              onChange={(event) => setSpan(event.target.value)}
+              disabled={isOther}
+            />
+            {spanError && <p className="field-error">{spanError}</p>}
+          </div>
+
+          <div className="geometry-field">
+            <label htmlFor="carriageway-width-input">
+              Carriageway Width (m):
+            </label>
+            <input
+              id="carriageway-width-input"
+              type="number"
+              value={carriagewayWidth}
+              onChange={(event) => setCarriagewayWidth(event.target.value)}
+              disabled={isOther}
+            />
+            {carriagewayError && (
+              <p className="field-error">{carriagewayError}</p>
+            )}
+          </div>
+
+          <div className="geometry-field">
+            <label>Footpath</label>
+
+            <div className="project-dropdown-box">
+              <button
+                type="button"
+                className="project-dropdown-trigger"
+                onClick={() => setShowFootpathMenu((prev) => !prev)}
+                disabled={isOther}
+              >
+                <span>{footpath || ""}</span>
+                <span className="dropdown-icon" aria-hidden="true" />
+              </button>
+
+              {showFootpathMenu && (
+                <div className="project-dropdown-menu">
+                  <button
+                    type="button"
+                    className="project-dropdown-item"
+                    onClick={() => handleFootpathSelect("Single-sided")}
+                  >
+                    Single-sided
+                  </button>
+                  <button
+                    type="button"
+                    className="project-dropdown-item"
+                    onClick={() => handleFootpathSelect("Both")}
+                  >
+                    Both
+                  </button>
+                  <button
+                    type="button"
+                    className="project-dropdown-item"
+                    onClick={() => handleFootpathSelect("None")}
+                  >
+                    None
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="geometry-field">
+            <label htmlFor="skew-angle-input">Skew Angle (degrees):</label>
+            <input
+              id="skew-angle-input"
+              type="number"
+              value={skewAngle}
+              onChange={(event) => setSkewAngle(event.target.value)}
+              disabled={isOther}
+            />
+            {skewAngleError && <p className="field-error">{skewAngleError}</p>}
+          </div>
+        </div>
       </div>
 
       <div
