@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-  const locationData = {
+const locationData = {
   Maharashtra: {
     Mumbai: {
       wind: "44 m/sec",
@@ -213,12 +213,12 @@ function ProjectLocationPanel({
 
         {showCustomModal && (
           <div className="custom-modal-overlay">
-            <div className="custom-modal">
+            <div className="custom-modal custom-modal-table">
               <h3>Custom Loading Parameters</h3>
 
-              <div className="custom-modal-grid">
-                <label>
-                  Basic Wind Speed
+              <div className="custom-loading-sheet">
+                <div className="custom-loading-row">
+                  <span>Basic Wind Speed</span>
                   <input
                     type="text"
                     value={draftValues.wind}
@@ -229,10 +229,10 @@ function ProjectLocationPanel({
                       })
                     }
                   />
-                </label>
+                </div>
 
-                <label>
-                  Seismic Zone
+                <div className="custom-loading-row">
+                  <span>Seismic Zone</span>
                   <input
                     type="text"
                     value={draftValues.seismicZone}
@@ -243,10 +243,10 @@ function ProjectLocationPanel({
                       })
                     }
                   />
-                </label>
+                </div>
 
-                <label>
-                  Zone Factor
+                <div className="custom-loading-row">
+                  <span>Zone Factor</span>
                   <input
                     type="text"
                     value={draftValues.zoneFactor}
@@ -257,10 +257,10 @@ function ProjectLocationPanel({
                       })
                     }
                   />
-                </label>
+                </div>
 
-                <label>
-                  Max Shade Air Temperature
+                <div className="custom-loading-row">
+                  <span>Max Shade Air Temperature</span>
                   <input
                     type="text"
                     value={draftValues.maxTemp}
@@ -271,10 +271,10 @@ function ProjectLocationPanel({
                       })
                     }
                   />
-                </label>
+                </div>
 
-                <label>
-                  Min Shade Air Temperature
+                <div className="custom-loading-row">
+                  <span>Min Shade Air Temperature</span>
                   <input
                     type="text"
                     value={draftValues.minTemp}
@@ -285,7 +285,7 @@ function ProjectLocationPanel({
                       })
                     }
                   />
-                </label>
+                </div>
               </div>
 
               <div className="custom-modal-actions">

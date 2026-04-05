@@ -21,9 +21,18 @@ function Sidebar({
   setNumberOfGirders,
   deckOverhangWidth,
   setDeckOverhangWidth,
+  girderGrade,
+  setGirderGrade,
+  crossBracingGrade,
+  setCrossBracingGrade,
+  deckGrade,
+  setDeckGrade,
 }) {
   const [showStructureMenu, setShowStructureMenu] = useState(false);
   const [showFootpathMenu, setShowFootpathMenu] = useState(false);
+  const [showGirderMenu, setShowGirderMenu] = useState(false);
+  const [showCrossBracingMenu, setShowCrossBracingMenu] = useState(false);
+  const [showDeckMenu, setShowDeckMenu] = useState(false);
 
   const isOther = structureType === "Other";
 
@@ -90,6 +99,21 @@ function Sidebar({
   const handleFootpathSelect = (value) => {
     setFootpath(value);
     setShowFootpathMenu(false);
+  };
+
+  const handleGirderSelect = (value) => {
+    setGirderGrade(value);
+    setShowGirderMenu(false);
+  };
+
+  const handleCrossBracingSelect = (value) => {
+    setCrossBracingGrade(value);
+    setShowCrossBracingMenu(false);
+  };
+
+  const handleDeckSelect = (value) => {
+    setDeckGrade(value);
+    setShowDeckMenu(false);
   };
 
   const syncFromSpacing = (spacingValue, overhangValue) => {
@@ -322,20 +346,111 @@ function Sidebar({
       >
         <h2>Material Inputs</h2>
 
-        <ul className="field-list">
-          <li className="field-item field-item-dropdown">
-            Girder
-            <span className="dropdown-icon" aria-hidden="true" />
-          </li>
-          <li className="field-item field-item-dropdown">
-            Cross Bracing
-            <span className="dropdown-icon" aria-hidden="true" />
-          </li>
-          <li className="field-item field-item-dropdown">
-            Deck
-            <span className="dropdown-icon" aria-hidden="true" />
-          </li>
-        </ul>
+        <div className="material-fields">
+          <div className="material-field">
+            <label>Girder</label>
+            <div className="project-dropdown-box">
+              <button
+                type="button"
+                className="project-dropdown-trigger"
+                onClick={() => {
+                  setShowGirderMenu((prev) => !prev);
+                  setShowCrossBracingMenu(false);
+                  setShowDeckMenu(false);
+                }}
+                disabled={isOther}
+              >
+                <span>{girderGrade || ""}</span>
+                <span className="dropdown-icon" aria-hidden="true" />
+              </button>
+
+              {showGirderMenu && (
+                <div className="project-dropdown-menu">
+                  {["E250", "E350", "E450"].map((grade) => (
+                    <button
+                      key={grade}
+                      type="button"
+                      className="project-dropdown-item"
+                      onClick={() => handleGirderSelect(grade)}
+                    >
+                      {grade}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="material-field">
+            <label>Cross Bracing</label>
+            <div className="project-dropdown-box">
+              <button
+                type="button"
+                className="project-dropdown-trigger"
+                onClick={() => {
+                  setShowCrossBracingMenu((prev) => !prev);
+                  setShowGirderMenu(false);
+                  setShowDeckMenu(false);
+                }}
+                disabled={isOther}
+              >
+                <span>{crossBracingGrade || ""}</span>
+                <span className="dropdown-icon" aria-hidden="true" />
+              </button>
+
+              {showCrossBracingMenu && (
+                <div className="project-dropdown-menu">
+                  {["E250", "E350", "E450"].map((grade) => (
+                    <button
+                      key={grade}
+                      type="button"
+                      className="project-dropdown-item"
+                      onClick={() => handleCrossBracingSelect(grade)}
+                    >
+                      {grade}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="material-field">
+            <label>Deck</label>
+            <div className="project-dropdown-box">
+              <button
+                type="button"
+                className="project-dropdown-trigger"
+                onClick={() => {
+                  setShowDeckMenu((prev) => !prev);
+                  setShowGirderMenu(false);
+                  setShowCrossBracingMenu(false);
+                }}
+                disabled={isOther}
+              >
+                <span>{deckGrade || ""}</span>
+                <span className="dropdown-icon" aria-hidden="true" />
+              </button>
+
+              {showDeckMenu && (
+                <div className="project-dropdown-menu">
+                  {["M25", "M30", "M35", "M40", "M45", "M50", "M55", "M60"].map(
+                    (grade) => (
+                      <button
+                        key={grade}
+                        type="button"
+                        className="project-dropdown-item"
+                        onClick={() => handleDeckSelect(grade)}
+                      >
+                        {grade}
+                      </button>
+                    )
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {showGeometryModal && (

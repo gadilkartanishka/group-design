@@ -29,6 +29,9 @@ function App() {
   const [girderSpacing, setGirderSpacing] = useState("");
   const [numberOfGirders, setNumberOfGirders] = useState("");
   const [deckOverhangWidth, setDeckOverhangWidth] = useState("");
+  const [girderGrade, setGirderGrade] = useState("");
+  const [crossBracingGrade, setCrossBracingGrade] = useState("");
+  const [deckGrade, setDeckGrade] = useState("");
 
   return (
     <main className="app-shell">
@@ -57,6 +60,12 @@ function App() {
             setNumberOfGirders={setNumberOfGirders}
             deckOverhangWidth={deckOverhangWidth}
             setDeckOverhangWidth={setDeckOverhangWidth}
+            girderGrade={girderGrade}
+            setGirderGrade={setGirderGrade}
+            crossBracingGrade={crossBracingGrade}
+            setCrossBracingGrade={setCrossBracingGrade}
+            deckGrade={deckGrade}
+            setDeckGrade={setDeckGrade}
           />
 
           {activePanel === "project-location" ? (
