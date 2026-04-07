@@ -33,6 +33,7 @@ function Sidebar({
   const [showGirderMenu, setShowGirderMenu] = useState(false);
   const [showCrossBracingMenu, setShowCrossBracingMenu] = useState(false);
   const [showDeckMenu, setShowDeckMenu] = useState(false);
+  const [lastGeometryDriver, setLastGeometryDriver] = useState("spacing");
 
   const isOther = structureType === "Other";
 
@@ -130,7 +131,11 @@ function Sidebar({
     }
 
     const calculatedGirders = (overallBridgeWidth - overhang) / spacing;
-    if (Number.isFinite(calculatedGirders) && Number.isInteger(calculatedGirders)) {
+    if (
+      Number.isFinite(calculatedGirders) &&
+      calculatedGirders > 0 &&
+      Number.isInteger(calculatedGirders)
+    ) {
       setNumberOfGirders(String(calculatedGirders));
     } else {
       setNumberOfGirders("");
@@ -160,21 +165,24 @@ function Sidebar({
 
   const handleSpacingChange = (event) => {
     const value = event.target.value;
+    setLastGeometryDriver("spacing");
     setGirderSpacing(value);
     syncFromSpacing(value, deckOverhangWidth);
   };
 
   const handleGirdersChange = (event) => {
     const value = event.target.value;
+    setLastGeometryDriver("girders");
     setNumberOfGirders(value);
     syncFromGirders(value, deckOverhangWidth);
   };
 
   const handleOverhangChange = (event) => {
     const value = event.target.value;
+    setLastGeometryDriver("overhang");
     setDeckOverhangWidth(value);
 
-    if (girdersProvided) {
+    if (lastGeometryDriver === "girders" && girdersProvided) {
       syncFromGirders(numberOfGirders, value);
     } else {
       syncFromSpacing(girderSpacing, value);
