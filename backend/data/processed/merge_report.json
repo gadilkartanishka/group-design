@@ -1,0 +1,182 @@
+{
+  "summary": {
+    "temperature_rows": 29,
+    "seismic_rows": 23,
+    "wind_rows": 77,
+    "temperature_unique_keys": 28,
+    "seismic_unique_keys": 23,
+    "wind_unique_keys": 77,
+    "triple_overlap_count": 0,
+    "wind_seismic_overlap_count": 21,
+    "temperature_wind_overlap_count": 4,
+    "temperature_seismic_overlap_count": 0
+  },
+  "triple_overlap_keys": [],
+  "wind_seismic_overlap_cities": [
+    {
+      "city": "Agra",
+      "wind_speed": "47",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Ahmedabad",
+      "wind_speed": "39",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Ajmer",
+      "wind_speed": "47",
+      "seismic_zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "city": "Almora",
+      "wind_speed": "47",
+      "seismic_zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "city": "Amritsar",
+      "wind_speed": "47",
+      "seismic_zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "city": "Asansol",
+      "wind_speed": "47",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Aurangabad",
+      "wind_speed": "39",
+      "seismic_zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "city": "Bahraich",
+      "wind_speed": "47",
+      "seismic_zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "city": "Bhubaneshwar",
+      "wind_speed": "50",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Bhuj",
+      "wind_speed": "50",
+      "seismic_zone": "V",
+      "zone_factor": "0.36"
+    },
+    {
+      "city": "Delhi",
+      "wind_speed": "47",
+      "seismic_zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "city": "Guwahati",
+      "wind_speed": "50",
+      "seismic_zone": "V",
+      "zone_factor": "0.36"
+    },
+    {
+      "city": "Hyderabad",
+      "wind_speed": "44",
+      "seismic_zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "city": "Jaipur",
+      "wind_speed": "47",
+      "seismic_zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "city": "Kolkata",
+      "wind_speed": "50",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Mumbai",
+      "wind_speed": "44",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Nagpur",
+      "wind_speed": "44",
+      "seismic_zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "city": "Pune",
+      "wind_speed": "39",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Surat",
+      "wind_speed": "47",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Vadodara",
+      "wind_speed": "47",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "city": "Varanasi",
+      "wind_speed": "50",
+      "seismic_zone": "III",
+      "zone_factor": "0.16"
+    }
+  ],
+  "temperature_wind_overlap_stations": [
+    {
+      "station": "Kurnool",
+      "state": "Andhra Pradesh",
+      "wind_city": "Kurnool",
+      "wind_speed": "39",
+      "max_temp": "45.6",
+      "min_temp": "6.7"
+    },
+    {
+      "station": "Nellore",
+      "state": "Andhra Pradesh",
+      "wind_city": "Nellore",
+      "wind_speed": "50",
+      "max_temp": "46.7",
+      "min_temp": "11.1"
+    },
+    {
+      "station": "Port Blair",
+      "state": "Andaman and Nicobar Island",
+      "wind_city": "Port Blair",
+      "wind_speed": "44",
+      "max_temp": "36.4",
+      "min_temp": "14.6"
+    },
+    {
+      "station": "Vishakhapatnam",
+      "state": "Andhra Pradesh",
+      "wind_city": "Vishakapatnam",
+      "wind_speed": "50",
+      "max_temp": "45.4",
+      "min_temp": "10.5"
+    }
+  ],
+  "notes": [
+    "The raw CSV files do not contain any exact city key present in all three datasets.",
+    "Temperature data is station-based and mostly covers Andaman and Andhra Pradesh stations.",
+    "Wind and seismic data overlap well, but temperature requires a separate mapping table before a full merged project-location dataset can be generated safely."
+  ]
+}

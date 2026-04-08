@@ -40,10 +40,41 @@ LOCATION_DATA = {
     },
 }
 
+MATERIAL_OPTIONS = {
+    "girder": ["E250", "E350", "E450"],
+    "cross_bracing": ["E250", "E350", "E450"],
+    "deck": ["M25", "M30", "M35", "M40", "M45", "M50", "M55", "M60"],
+}
+
+BASIC_INPUT_OPTIONS = {
+    "structure_types": ["Highway", "Other"],
+    "footpath_options": ["Single-sided", "Both", "None"],
+    "material_options": MATERIAL_OPTIONS,
+}
+
+
+def _to_float(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _to_int(value):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
 
 @api_view(["GET"])
 def health_check(request):
     return Response({"message": "Backend is working"})
+
+
+@api_view(["GET"])
+def basic_input_options(request):
+    return Response(BASIC_INPUT_OPTIONS)
 
 
 @api_view(["GET"])
@@ -139,3 +170,164 @@ def custom_loading_result(request):
             }
         }
     )
+
+
+@api_view(["POST"])
+def validate_geometry_inputs(request):
+    payload = request.data
+
+    span = _to_float(payload.get("span"))
+    carriageway_width = _to_float(payload.get("carriageway_width"))
+    skew_angle = _to_float(payload.get("skew_angle"))
+    footpath = payload.get("footpath", "")
+
+    errors = {}
+
+    if span is not None and (span < 20 or span > 45):
+        errors["span"] = "Outside the software range."
+
+    if carriageway_width is not None and (
+        carriageway_width < 4.25 or carriageway_width >= 24
+    ):
+        errors["carriageway_width"] = (
+            "Width must be at least 4.25 m and less than 24 m."
+        )
+
+    if skew_angle is not None and (skew_angle < -15 or skew_angle > 15):
+        errors["skew_angle"] = "IRC 24 (2010) requires detailed analysis."
+
+    if footpath and footpath not in BASIC_INPUT_OPTIONS["footpath_options"]:
+        errors["footpath"] = "Invalid footpath option."
+
+    return Response({"valid": not errors, "errors": errors})
+
+
+@api_view(["POST"])
+def calculate_additional_geometry(request):
+    payload = request.data
+
+    carriageway_width = _to_float(payload.get("carriageway_width"))
+    girder_spacing = _to_float(payload.get("girder_spacing"))
+    number_of_girders = _to_int(payload.get("number_of_girders"))
+    deck_overhang_width = _to_float(payload.get("deck_overhang_width"))
+    driver = payload.get("driver", "")
+
+    if carriageway_width is None:
+        return Response(
+            {"detail": "Field 'carriageway_width' is required."},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    overall_bridge_width = carriageway_width + 5
+    errors = {}
+
+    if girder_spacing is not None and girder_spacing >= overall_bridge_width:
+        errors["girder_spacing"] = (
+            "Girder spacing must be less than overall bridge width."
+        )
+
+    if (
+        deck_overhang_width is not None
+        and deck_overhang_width >= overall_bridge_width
+    ):
+        errors["deck_overhang_width"] = (
+            "Deck overhang width must be less than overall bridge width."
+        )
+
+    if (
+        driver == ""
+        and girder_spacing is not None
+        and deck_overhang_width is not None
+        and number_of_girders is not None
+        and girder_spacing > 0
+    ):
+        expected_girders = (
+            overall_bridge_width - deck_overhang_width
+        ) / girder_spacing
+        if int(expected_girders) != expected_girders or expected_girders != number_of_girders:
+            errors["formula"] = (
+                "Inputs must satisfy (Overall Width - Overhang) / "
+                "Spacing = No. of Girders."
+            )
+
+    if errors:
+        return Response(
+            {
+                "valid": False,
+                "overall_bridge_width": round(overall_bridge_width, 2),
+                "errors": errors,
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    result = {
+        "overall_bridge_width": round(overall_bridge_width, 2),
+        "girder_spacing": girder_spacing,
+        "number_of_girders": number_of_girders,
+        "deck_overhang_width": deck_overhang_width,
+    }
+
+    if (
+        driver == "spacing"
+        and girder_spacing is not None
+        and deck_overhang_width is not None
+        and girder_spacing > 0
+    ):
+        calculated_girders = (
+            overall_bridge_width - deck_overhang_width
+        ) / girder_spacing
+        if int(calculated_girders) == calculated_girders and calculated_girders > 0:
+            result["number_of_girders"] = int(calculated_girders)
+        else:
+            result["number_of_girders"] = ""
+
+    elif (
+        driver == "girders"
+        and number_of_girders is not None
+        and deck_overhang_width is not None
+        and number_of_girders > 0
+    ):
+        result["girder_spacing"] = round(
+            (overall_bridge_width - deck_overhang_width) / number_of_girders, 1
+        )
+
+    elif driver == "overhang":
+        if (
+            girder_spacing is not None
+            and girder_spacing > 0
+            and deck_overhang_width is not None
+        ):
+            calculated_girders = (
+                overall_bridge_width - deck_overhang_width
+            ) / girder_spacing
+            if int(calculated_girders) == calculated_girders and calculated_girders > 0:
+                result["number_of_girders"] = int(calculated_girders)
+            else:
+                result["number_of_girders"] = ""
+        elif (
+            number_of_girders is not None
+            and number_of_girders > 0
+            and deck_overhang_width is not None
+        ):
+            result["girder_spacing"] = round(
+                (overall_bridge_width - deck_overhang_width) / number_of_girders, 1
+            )
+
+    elif girder_spacing is not None and deck_overhang_width is not None and girder_spacing > 0:
+        calculated_girders = (
+            overall_bridge_width - deck_overhang_width
+        ) / girder_spacing
+        if int(calculated_girders) == calculated_girders and calculated_girders > 0:
+            result["number_of_girders"] = int(calculated_girders)
+
+    elif number_of_girders is not None and deck_overhang_width is not None and number_of_girders > 0:
+        result["girder_spacing"] = round(
+            (overall_bridge_width - deck_overhang_width) / number_of_girders, 1
+        )
+
+    elif girder_spacing is not None and number_of_girders is not None and girder_spacing > 0:
+        result["deck_overhang_width"] = round(
+            overall_bridge_width - (girder_spacing * number_of_girders), 1
+        )
+
+    return Response({"valid": True, "result": result})

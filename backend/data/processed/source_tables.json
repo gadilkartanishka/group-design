@@ -1,0 +1,734 @@
+{
+  "temperature": [
+    {
+      "state": "Andaman and Nicobar Island",
+      "station": "Car-Nicobar",
+      "station_key": "car nicobar",
+      "max_temp": "38.1",
+      "min_temp": "10.9"
+    },
+    {
+      "state": "Andaman and Nicobar Island",
+      "station": "Hut Bay",
+      "station_key": "hut bay",
+      "max_temp": "39.4",
+      "min_temp": "0.2"
+    },
+    {
+      "state": "Andaman and Nicobar Island",
+      "station": "Kondul",
+      "station_key": "kondul",
+      "max_temp": "47.2",
+      "min_temp": "14"
+    },
+    {
+      "state": "Andaman and Nicobar Island",
+      "station": "Long Island",
+      "station_key": "long island",
+      "max_temp": "43.1",
+      "min_temp": "14.6"
+    },
+    {
+      "state": "Andaman and Nicobar Island",
+      "station": "Mayabandar",
+      "station_key": "mayabandar",
+      "max_temp": "39",
+      "min_temp": "14"
+    },
+    {
+      "state": "Andaman and Nicobar Island",
+      "station": "Nancowry",
+      "station_key": "nancowry",
+      "max_temp": "39.2",
+      "min_temp": "13.9"
+    },
+    {
+      "state": "Andaman and Nicobar Island",
+      "station": "Port Blair",
+      "station_key": "port blair",
+      "max_temp": "36.4",
+      "min_temp": "14.6"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Anantapur",
+      "station_key": "anantapur",
+      "max_temp": "44.1",
+      "min_temp": "9.4"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Arogyavaram",
+      "station_key": "arogyavaram",
+      "max_temp": "40.6",
+      "min_temp": "8"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Bapatla",
+      "station_key": "bapatla",
+      "max_temp": "47.4",
+      "min_temp": "11.1"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Cuddapah",
+      "station_key": "kadapa",
+      "max_temp": "46.1",
+      "min_temp": "10"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Dolphine Nose/CDR Visakhapatnam",
+      "station_key": "visakhapatnam",
+      "max_temp": "42.8",
+      "min_temp": "14.1"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Gannavaram (A)",
+      "station_key": "gannavaram a ",
+      "max_temp": "48.8",
+      "min_temp": "8.5"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Kakinada",
+      "station_key": "kakinada",
+      "max_temp": "47.2",
+      "min_temp": "12"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Kalingapatanam",
+      "station_key": "kalingapatanam",
+      "max_temp": "46.2",
+      "min_temp": "10.3"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Kavali",
+      "station_key": "kavali",
+      "max_temp": "47.2",
+      "min_temp": "16.4"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Kurnool",
+      "station_key": "kurnool",
+      "max_temp": "45.6",
+      "min_temp": "6.7"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Masulipatnam",
+      "station_key": "machilipatnam",
+      "max_temp": "47.8",
+      "min_temp": "13.2"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Nandigama",
+      "station_key": "nandigama",
+      "max_temp": "47.1",
+      "min_temp": "9.3"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Nandyal",
+      "station_key": "nandyal",
+      "max_temp": "48.2",
+      "min_temp": "9.2"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Narsapur",
+      "station_key": "narsapur",
+      "max_temp": "46.1",
+      "min_temp": "14.6"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Nellore",
+      "station_key": "nellore",
+      "max_temp": "46.7",
+      "min_temp": "11.1"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Nidadavolu",
+      "station_key": "nidadavolu",
+      "max_temp": "48.9",
+      "min_temp": "11.4"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Ongole",
+      "station_key": "ongole",
+      "max_temp": "47.4",
+      "min_temp": "14"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Rentachintala",
+      "station_key": "rentachintala",
+      "max_temp": "49.9",
+      "min_temp": "9.4"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Tirmalai",
+      "station_key": "tirumala",
+      "max_temp": "37.6",
+      "min_temp": "3.6"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Tirupathy",
+      "station_key": "tirupati",
+      "max_temp": "45.2",
+      "min_temp": "12.9"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Tuni",
+      "station_key": "tuni",
+      "max_temp": "47.5",
+      "min_temp": "13.9"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "station": "Vishakhapatnam",
+      "station_key": "visakhapatnam",
+      "max_temp": "45.4",
+      "min_temp": "10.5"
+    }
+  ],
+  "seismic": [
+    {
+      "town": "Agra",
+      "town_key": "agra",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Ahmedabad",
+      "town_key": "ahmedabad",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Ajmer",
+      "town_key": "ajmer",
+      "zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "town": "Allahabad",
+      "town_key": "allahabad",
+      "zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "town": "Almora",
+      "town_key": "almora",
+      "zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "town": "Ambala",
+      "town_key": "ambala",
+      "zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "town": "Amritsar",
+      "town_key": "amritsar",
+      "zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "town": "Asansol",
+      "town_key": "asansol",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Aurangabad",
+      "town_key": "aurangabad",
+      "zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "town": "Bahraich",
+      "town_key": "bahraich",
+      "zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "town": "Bhubaneswar",
+      "town_key": "bhubaneswar",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Bhuj",
+      "town_key": "bhuj",
+      "zone": "V",
+      "zone_factor": "0.36"
+    },
+    {
+      "town": "Delhi",
+      "town_key": "delhi",
+      "zone": "IV",
+      "zone_factor": "0.24"
+    },
+    {
+      "town": "Guwahati",
+      "town_key": "guwahati",
+      "zone": "V",
+      "zone_factor": "0.36"
+    },
+    {
+      "town": "Hyderabad",
+      "town_key": "hyderabad",
+      "zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "town": "Jaipur",
+      "town_key": "jaipur",
+      "zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "town": "Kolkata",
+      "town_key": "kolkata",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Mumbai",
+      "town_key": "mumbai",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Nagpur",
+      "town_key": "nagpur",
+      "zone": "II",
+      "zone_factor": "0.10"
+    },
+    {
+      "town": "Pune",
+      "town_key": "pune",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Surat",
+      "town_key": "surat",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Vadodara",
+      "town_key": "vadodara",
+      "zone": "III",
+      "zone_factor": "0.16"
+    },
+    {
+      "town": "Varanasi",
+      "town_key": "varanasi",
+      "zone": "III",
+      "zone_factor": "0.16"
+    }
+  ],
+  "wind": [
+    {
+      "town": "Agra",
+      "town_key": "agra",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Ahmedabad",
+      "town_key": "ahmedabad",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Ajmer",
+      "town_key": "ajmer",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Almora",
+      "town_key": "almora",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Amritsar",
+      "town_key": "amritsar",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Asansol",
+      "town_key": "asansol",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Aurangabad",
+      "town_key": "aurangabad",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Bahraich",
+      "town_key": "bahraich",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Bengaluru",
+      "town_key": "bengaluru",
+      "wind_speed": "33"
+    },
+    {
+      "town": "Barauni",
+      "town_key": "barauni",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Bareilly",
+      "town_key": "bareilly",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Bhatinda",
+      "town_key": "bhatinda",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Bhilai",
+      "town_key": "bhilai",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Bhopal",
+      "town_key": "bhopal",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Bhubaneshwar",
+      "town_key": "bhubaneswar",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Bhuj",
+      "town_key": "bhuj",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Bikaner",
+      "town_key": "bikaner",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Bokaro",
+      "town_key": "bokaro",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Chandigarh",
+      "town_key": "chandigarh",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Chennai",
+      "town_key": "chennai",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Coimbatore",
+      "town_key": "coimbatore",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Cuttack",
+      "town_key": "cuttack",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Darbhanga",
+      "town_key": "darbhanga",
+      "wind_speed": "55"
+    },
+    {
+      "town": "Darjeeling",
+      "town_key": "darjeeling",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Dehradun",
+      "town_key": "dehradun",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Delhi",
+      "town_key": "delhi",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Durgapur",
+      "town_key": "durgapur",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Gangtok",
+      "town_key": "gangtok",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Guwahati",
+      "town_key": "guwahati",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Gaya",
+      "town_key": "gaya",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Gorakhpur",
+      "town_key": "gorakhpur",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Hyderabad",
+      "town_key": "hyderabad",
+      "wind_speed": "44"
+    },
+    {
+      "town": "Imphal",
+      "town_key": "imphal",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Jabalpur",
+      "town_key": "jabalpur",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Jaipur",
+      "town_key": "jaipur",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Jamshedpur",
+      "town_key": "jamshedpur",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Jhansi",
+      "town_key": "jhansi",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Jodhpur",
+      "town_key": "jodhpur",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Kanpur",
+      "town_key": "kanpur",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Kohima",
+      "town_key": "kohima",
+      "wind_speed": "44"
+    },
+    {
+      "town": "Kolkata",
+      "town_key": "kolkata",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Kozhikode",
+      "town_key": "kozhikode",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Kurnool",
+      "town_key": "kurnool",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Lakshadweep",
+      "town_key": "lakshadweep",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Lucknow",
+      "town_key": "lucknow",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Ludhiana",
+      "town_key": "ludhiana",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Madurai",
+      "town_key": "madurai",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Mandi",
+      "town_key": "mandi",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Mangalore",
+      "town_key": "mangalore",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Moradabad",
+      "town_key": "moradabad",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Mumbai",
+      "town_key": "mumbai",
+      "wind_speed": "44"
+    },
+    {
+      "town": "Mysore",
+      "town_key": "mysore",
+      "wind_speed": "33"
+    },
+    {
+      "town": "Nagpur",
+      "town_key": "nagpur",
+      "wind_speed": "44"
+    },
+    {
+      "town": "Nainital",
+      "town_key": "nainital",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Nasik",
+      "town_key": "nasik",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Nellore",
+      "town_key": "nellore",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Panjim",
+      "town_key": "panjim",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Patiala",
+      "town_key": "patiala",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Patna",
+      "town_key": "patna",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Puducherry",
+      "town_key": "puducherry",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Port Blair",
+      "town_key": "port blair",
+      "wind_speed": "44"
+    },
+    {
+      "town": "Pune",
+      "town_key": "pune",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Raipur",
+      "town_key": "raipur",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Rajkot",
+      "town_key": "rajkot",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Ranchi",
+      "town_key": "ranchi",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Roorkee",
+      "town_key": "roorkee",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Rourkela",
+      "town_key": "rourkela",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Shimla",
+      "town_key": "shimla",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Srinagar",
+      "town_key": "srinagar",
+      "wind_speed": "44"
+    },
+    {
+      "town": "Surat",
+      "town_key": "surat",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Tiruchirappalli",
+      "town_key": "tiruchirappalli",
+      "wind_speed": "39"
+    },
+    {
+      "town": "Trivandrum",
+      "town_key": "trivandrum",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Udaipur",
+      "town_key": "udaipur",
+      "wind_speed": "44"
+    },
+    {
+      "town": "Vadodara",
+      "town_key": "vadodara",
+      "wind_speed": "47"
+    },
+    {
+      "town": "Varanasi",
+      "town_key": "varanasi",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Vijayawada",
+      "town_key": "vijayawada",
+      "wind_speed": "50"
+    },
+    {
+      "town": "Vishakapatnam",
+      "town_key": "visakhapatnam",
+      "wind_speed": "50"
+    }
+  ]
+}
