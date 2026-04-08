@@ -603,6 +603,11 @@ body {
   color: red;
 }
 
+.sidebar-api-error,
+.project-api-error {
+  margin-top: 8px;
+}
+
 .geometry-modal-error {
   margin-top: 12px;
 }

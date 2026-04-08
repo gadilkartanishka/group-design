@@ -1,37 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const locationData = {
-  Maharashtra: {
-    Mumbai: {
-      wind: "44 m/sec",
-      seismic: "Zone III, 0.16",
-      minTemp: "22°C",
-      maxTemp: "38°C",
-    },
-    Pune: {
-      wind: "39 m/sec",
-      seismic: "Zone III, 0.16",
-      minTemp: "18°C",
-      maxTemp: "36°C",
-    },
-  },
-  Karnataka: {
-    Bengaluru: {
-      wind: "33 m/sec",
-      seismic: "Zone II, 0.10",
-      minTemp: "19°C",
-      maxTemp: "34°C",
-    },
-  },
-  Delhi: {
-    "Central Delhi": {
-      wind: "47 m/sec",
-      seismic: "Zone IV, 0.24",
-      minTemp: "7°C",
-      maxTemp: "43°C",
-    },
-  },
-};
+const API_BASE = "http://127.0.0.1:8000/api";
 
 function ProjectLocationPanel({
   locationMode,
@@ -48,16 +17,13 @@ function ProjectLocationPanel({
   const [showStateMenu, setShowStateMenu] = useState(false);
   const [showDistrictMenu, setShowDistrictMenu] = useState(false);
   const [draftValues, setDraftValues] = useState(customLoadingValues);
-
-  const states = Object.keys(locationData);
-  const districts = selectedState
-    ? Object.keys(locationData[selectedState])
-    : [];
-
-  const result =
-    locationMode === "location" && selectedState && selectedDistrict
-      ? locationData[selectedState][selectedDistrict]
-      : null;
+  const [states, setStates] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [result, setResult] = useState(null);
+  const [isLoadingStates, setIsLoadingStates] = useState(false);
+  const [isLoadingDistricts, setIsLoadingDistricts] = useState(false);
+  const [isLoadingResult, setIsLoadingResult] = useState(false);
+  const [apiError, setApiError] = useState("");
 
   const hasCustomValues =
     customLoadingValues.wind ||
@@ -66,9 +32,99 @@ function ProjectLocationPanel({
     customLoadingValues.maxTemp ||
     customLoadingValues.minTemp;
 
+  useEffect(() => {
+    const fetchStates = async () => {
+      setIsLoadingStates(true);
+      setApiError("");
+
+      try {
+        const response = await fetch(`${API_BASE}/locations/states/`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch states.");
+        }
+
+        const data = await response.json();
+        setStates(data.states || []);
+      } catch (error) {
+        setApiError("Could not load states from backend.");
+      } finally {
+        setIsLoadingStates(false);
+      }
+    };
+
+    fetchStates();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedState) {
+      setDistricts([]);
+      setSelectedDistrict("");
+      setResult(null);
+      return;
+    }
+
+    const fetchDistricts = async () => {
+      setIsLoadingDistricts(true);
+      setApiError("");
+
+      try {
+        const response = await fetch(
+          `${API_BASE}/locations/districts/?state=${encodeURIComponent(
+            selectedState
+          )}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch districts.");
+        }
+
+        const data = await response.json();
+        setDistricts(data.districts || []);
+      } catch (error) {
+        setApiError("Could not load districts from backend.");
+      } finally {
+        setIsLoadingDistricts(false);
+      }
+    };
+
+    fetchDistricts();
+  }, [selectedState, setSelectedDistrict]);
+
+  useEffect(() => {
+    if (locationMode !== "location" || !selectedState || !selectedDistrict) {
+      setResult(null);
+      return;
+    }
+
+    const fetchResult = async () => {
+      setIsLoadingResult(true);
+      setApiError("");
+
+      try {
+        const response = await fetch(
+          `${API_BASE}/locations/result/?state=${encodeURIComponent(
+            selectedState
+          )}&district=${encodeURIComponent(selectedDistrict)}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch result values.");
+        }
+
+        const data = await response.json();
+        setResult(data.result || null);
+      } catch (error) {
+        setApiError("Could not load location result values from backend.");
+      } finally {
+        setIsLoadingResult(false);
+      }
+    };
+
+    fetchResult();
+  }, [locationMode, selectedState, selectedDistrict]);
+
   const handleStateSelect = (state) => {
     setSelectedState(state);
     setSelectedDistrict("");
+    setResult(null);
     setShowStateMenu(false);
     setShowDistrictMenu(false);
   };
@@ -84,9 +140,41 @@ function ProjectLocationPanel({
     setShowCustomModal(true);
   };
 
-  const saveCustomValues = () => {
-    setCustomLoadingValues(draftValues);
-    setShowCustomModal(false);
+  const saveCustomValues = async () => {
+    setApiError("");
+
+    try {
+      const response = await fetch(`${API_BASE}/locations/custom-loading/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          wind: draftValues.wind,
+          seismic_zone: draftValues.seismicZone,
+          zone_factor: draftValues.zoneFactor,
+          min_temp: draftValues.minTemp,
+          max_temp: draftValues.maxTemp,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || "Failed to save custom loading values.");
+      }
+
+      setCustomLoadingValues({
+        wind: data.result.wind,
+        seismicZone: data.result.seismic_zone,
+        zoneFactor: data.result.zone_factor,
+        minTemp: data.result.min_temp,
+        maxTemp: data.result.max_temp,
+      });
+      setShowCustomModal(false);
+    } catch (error) {
+      setApiError("Could not save custom loading values to backend.");
+    }
   };
 
   return (
@@ -119,7 +207,7 @@ function ProjectLocationPanel({
                     setShowStateMenu((prev) => !prev);
                     setShowDistrictMenu(false);
                   }}
-                  disabled={locationMode !== "location"}
+                  disabled={locationMode !== "location" || isLoadingStates}
                 >
                   <span>{selectedState || ""}</span>
                   <span className="dropdown-icon" aria-hidden="true" />
@@ -154,7 +242,11 @@ function ProjectLocationPanel({
                     setShowDistrictMenu((prev) => !prev);
                     setShowStateMenu(false);
                   }}
-                  disabled={locationMode !== "location" || !selectedState}
+                  disabled={
+                    locationMode !== "location" ||
+                    !selectedState ||
+                    isLoadingDistricts
+                  }
                 >
                   <span>{selectedDistrict || ""}</span>
                   <span className="dropdown-icon" aria-hidden="true" />
@@ -178,13 +270,24 @@ function ProjectLocationPanel({
             </div>
           </div>
 
+          {apiError && <p className="field-error project-api-error">{apiError}</p>}
+
+          {locationMode === "location" && isLoadingResult && (
+            <div className="project-result-box">
+              <p>Loading result values...</p>
+            </div>
+          )}
+
           {locationMode === "location" && result && (
             <div className="project-result-box">
               <p>IRC 6 (2017) Resulting Values:</p>
               <p>Basic Wind Speed: {result.wind}</p>
-              <p>Seismic Zone and Zone Factor: {result.seismic}</p>
-              <p>Minimum Shade Air Temperature: {result.minTemp}</p>
-              <p>Maximum Shade Air Temperature: {result.maxTemp}</p>
+              <p>
+                Seismic Zone and Zone Factor: {result.seismic_zone},{" "}
+                {result.zone_factor}
+              </p>
+              <p>Minimum Shade Air Temperature: {result.min_temp}</p>
+              <p>Maximum Shade Air Temperature: {result.max_temp}</p>
             </div>
           )}
 
@@ -196,8 +299,8 @@ function ProjectLocationPanel({
                 Seismic Zone and Zone Factor: {customLoadingValues.seismicZone},{" "}
                 {customLoadingValues.zoneFactor}
               </p>
-              <p>Minimum Shade Air Temperature: {customLoadingValues.minTemp}°C</p>
-              <p>Maximum Shade Air Temperature: {customLoadingValues.maxTemp}°C</p>
+              <p>Minimum Shade Air Temperature: {customLoadingValues.minTemp}</p>
+              <p>Maximum Shade Air Temperature: {customLoadingValues.maxTemp}</p>
             </div>
           )}
 

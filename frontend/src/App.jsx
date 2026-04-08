@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import ReferencePanel from "./components/ReferencePanel";
 import ProjectLocationPanel from "./components/ProjectLocationPanel";
 
+const API_BASE = "http://127.0.0.1:8000/api";
+
 function App() {
   const [structureType, setStructureType] = useState("");
   const [activePanel, setActivePanel] = useState("reference");
+  const [basicInputOptions, setBasicInputOptions] = useState({
+    structure_types: [],
+    footpath_options: [],
+    material_options: {
+      girder: [],
+      cross_bracing: [],
+      deck: [],
+    },
+  });
+  const [basicOptionsError, setBasicOptionsError] = useState("");
 
   const [locationMode, setLocationMode] = useState("location");
   const [selectedState, setSelectedState] = useState("");
@@ -32,6 +44,32 @@ function App() {
   const [girderGrade, setGirderGrade] = useState("");
   const [crossBracingGrade, setCrossBracingGrade] = useState("");
   const [deckGrade, setDeckGrade] = useState("");
+
+  useEffect(() => {
+    const fetchBasicInputOptions = async () => {
+      try {
+        const response = await fetch(`${API_BASE}/basic-inputs/options/`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch basic input options.");
+        }
+
+        const data = await response.json();
+        setBasicInputOptions({
+          structure_types: data.structure_types || [],
+          footpath_options: data.footpath_options || [],
+          material_options: data.material_options || {
+            girder: [],
+            cross_bracing: [],
+            deck: [],
+          },
+        });
+      } catch (error) {
+        setBasicOptionsError("Could not load basic input options from backend.");
+      }
+    };
+
+    fetchBasicInputOptions();
+  }, []);
 
   return (
     <main className="app-shell">
@@ -66,6 +104,8 @@ function App() {
             setCrossBracingGrade={setCrossBracingGrade}
             deckGrade={deckGrade}
             setDeckGrade={setDeckGrade}
+            basicInputOptions={basicInputOptions}
+            basicOptionsError={basicOptionsError}
           />
 
           {activePanel === "project-location" ? (

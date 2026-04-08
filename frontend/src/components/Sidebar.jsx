@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const API_BASE = "http://127.0.0.1:8000/api";
 
 function Sidebar({
   structureType,
@@ -27,6 +29,8 @@ function Sidebar({
   setCrossBracingGrade,
   deckGrade,
   setDeckGrade,
+  basicInputOptions,
+  basicOptionsError,
 }) {
   const [showStructureMenu, setShowStructureMenu] = useState(false);
   const [showFootpathMenu, setShowFootpathMenu] = useState(false);
@@ -34,63 +38,70 @@ function Sidebar({
   const [showCrossBracingMenu, setShowCrossBracingMenu] = useState(false);
   const [showDeckMenu, setShowDeckMenu] = useState(false);
   const [lastGeometryDriver, setLastGeometryDriver] = useState("spacing");
+  const [geometryErrors, setGeometryErrors] = useState({});
+  const [geometryApiError, setGeometryApiError] = useState("");
+  const [geometryModalError, setGeometryModalError] = useState("");
+  const [overallBridgeWidth, setOverallBridgeWidth] = useState(0);
 
   const isOther = structureType === "Other";
+  const structureTypes = basicInputOptions.structure_types || [];
+  const footpathOptions = basicInputOptions.footpath_options || [];
+  const materialOptions = basicInputOptions.material_options || {
+    girder: [],
+    cross_bracing: [],
+    deck: [],
+  };
 
-  const spanNumber = Number(span);
-  const carriagewayNumber = Number(carriagewayWidth);
-  const skewAngleNumber = Number(skewAngle);
-  const spacingNumber = Number(girderSpacing);
-  const girdersNumber = Number(numberOfGirders);
-  const overhangNumber = Number(deckOverhangWidth);
-  const overallBridgeWidth =
-    carriagewayWidth !== "" ? carriagewayNumber + 5 : 0;
-  const spacingProvided = girderSpacing !== "";
-  const girdersProvided = numberOfGirders !== "";
-  const overhangProvided = deckOverhangWidth !== "";
+  useEffect(() => {
+    const validateGeometry = async () => {
+      if (isOther) {
+        setGeometryErrors({});
+        setGeometryApiError("");
+        return;
+      }
 
-  const spanError =
-    span !== "" && (spanNumber < 20 || spanNumber > 45)
-      ? "Outside the software range."
-      : "";
+      try {
+        const response = await fetch(`${API_BASE}/geometry/validate/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            span,
+            carriageway_width: carriagewayWidth,
+            footpath,
+            skew_angle: skewAngle,
+          }),
+        });
 
-  const carriagewayError =
-    carriagewayWidth !== "" &&
-    (carriagewayNumber < 4.25 || carriagewayNumber >= 24)
-      ? "Width must be at least 4.25 m and less than 24 m."
-      : "";
+        if (!response.ok) {
+          throw new Error("Failed to validate geometry inputs.");
+        }
 
-  const skewAngleError =
-    skewAngle !== "" && (skewAngleNumber < -15 || skewAngleNumber > 15)
-      ? "IRC 24 (2010) requires detailed analysis."
-      : "";
+        const data = await response.json();
+        setGeometryErrors(data.errors || {});
+        setGeometryApiError("");
+      } catch (error) {
+        setGeometryApiError("Could not validate geometric details from backend.");
+      }
+    };
 
-  let geometryModalError = "";
+    validateGeometry();
+  }, [span, carriagewayWidth, footpath, skewAngle, isOther]);
 
-  if (showGeometryModal && carriagewayWidth === "") {
-    geometryModalError = "Enter carriageway width first.";
-  } else if (spacingProvided && spacingNumber >= overallBridgeWidth) {
-    geometryModalError = "Girder spacing must be less than overall bridge width.";
-  } else if (overhangProvided && overhangNumber >= overallBridgeWidth) {
-    geometryModalError =
-      "Deck overhang width must be less than overall bridge width.";
-  } else if (
-    spacingProvided &&
-    overhangProvided &&
-    girdersProvided &&
-    spacingNumber > 0
-  ) {
-    const expectedGirders = (overallBridgeWidth - overhangNumber) / spacingNumber;
-    const integerGirders = Number.isInteger(expectedGirders);
-    if (
-      !Number.isFinite(expectedGirders) ||
-      !integerGirders ||
-      expectedGirders !== girdersNumber
-    ) {
-      geometryModalError =
-        "Inputs must satisfy (Overall Width - Overhang) / Spacing = No. of Girders.";
+  useEffect(() => {
+    if (!showGeometryModal) {
+      setGeometryModalError("");
+      return;
     }
-  }
+
+    if (carriagewayWidth === "") {
+      setOverallBridgeWidth(0);
+      return;
+    }
+
+    setOverallBridgeWidth(Number(carriagewayWidth) + 5);
+  }, [showGeometryModal, carriagewayWidth]);
 
   const handleStructureSelect = (value) => {
     setStructureType(value);
@@ -117,76 +128,114 @@ function Sidebar({
     setShowDeckMenu(false);
   };
 
-  const syncFromSpacing = (spacingValue, overhangValue) => {
-    const spacing = Number(spacingValue);
-    const overhang = Number(overhangValue);
-
-    if (
-      !Number.isFinite(spacing) ||
-      spacing <= 0 ||
-      !Number.isFinite(overhang) ||
-      overallBridgeWidth <= 0
-    ) {
+  const syncAdditionalGeometry = async ({
+    nextSpacing = girderSpacing,
+    nextGirders = numberOfGirders,
+    nextOverhang = deckOverhangWidth,
+    driver = "",
+  }) => {
+    if (carriagewayWidth === "") {
+      setOverallBridgeWidth(0);
+      setGeometryModalError("Enter carriageway width first.");
+      if (driver === "spacing") {
+        setGirderSpacing(nextSpacing);
+      } else if (driver === "girders") {
+        setNumberOfGirders(nextGirders);
+      } else if (driver === "overhang") {
+        setDeckOverhangWidth(nextOverhang);
+      }
       return;
     }
 
-    const calculatedGirders = (overallBridgeWidth - overhang) / spacing;
-    if (
-      Number.isFinite(calculatedGirders) &&
-      calculatedGirders > 0 &&
-      Number.isInteger(calculatedGirders)
-    ) {
-      setNumberOfGirders(String(calculatedGirders));
-    } else {
-      setNumberOfGirders("");
-    }
-  };
+    try {
+      const response = await fetch(`${API_BASE}/geometry/additional/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          carriageway_width: carriagewayWidth,
+          girder_spacing: nextSpacing,
+          number_of_girders: nextGirders,
+          deck_overhang_width: nextOverhang,
+          driver,
+        }),
+      });
 
-  const syncFromGirders = (girdersValue, overhangValue) => {
-    const girders = Number(girdersValue);
-    const overhang = Number(overhangValue);
+      const data = await response.json();
+      const width =
+        data.result?.overall_bridge_width ?? data.overall_bridge_width ?? 0;
+      setOverallBridgeWidth(width);
 
-    if (
-      !Number.isFinite(girders) ||
-      girders <= 0 ||
-      !Number.isFinite(overhang) ||
-      overallBridgeWidth <= 0
-    ) {
-      return;
-    }
+      if (!response.ok) {
+        setGeometryModalError(
+          data.errors?.formula ||
+            data.errors?.girder_spacing ||
+            data.errors?.deck_overhang_width ||
+            data.detail ||
+            "Could not calculate additional geometry."
+        );
 
-    const calculatedSpacing = (overallBridgeWidth - overhang) / girders;
-    if (Number.isFinite(calculatedSpacing) && calculatedSpacing > 0) {
-      setGirderSpacing(calculatedSpacing.toFixed(1));
-    } else {
-      setGirderSpacing("");
+        if (driver === "spacing") {
+          setGirderSpacing(nextSpacing);
+        } else if (driver === "girders") {
+          setNumberOfGirders(nextGirders);
+        } else if (driver === "overhang") {
+          setDeckOverhangWidth(nextOverhang);
+        }
+        return;
+      }
+
+      setGeometryModalError("");
+      setGirderSpacing(
+        data.result.girder_spacing === null || data.result.girder_spacing === ""
+          ? ""
+          : String(data.result.girder_spacing)
+      );
+      setNumberOfGirders(
+        data.result.number_of_girders === null ||
+          data.result.number_of_girders === ""
+          ? ""
+          : String(data.result.number_of_girders)
+      );
+      setDeckOverhangWidth(
+        data.result.deck_overhang_width === null ||
+          data.result.deck_overhang_width === ""
+          ? ""
+          : String(data.result.deck_overhang_width)
+      );
+    } catch (error) {
+      setGeometryModalError("Could not calculate additional geometry from backend.");
     }
   };
 
   const handleSpacingChange = (event) => {
     const value = event.target.value;
     setLastGeometryDriver("spacing");
-    setGirderSpacing(value);
-    syncFromSpacing(value, deckOverhangWidth);
+    syncAdditionalGeometry({
+      nextSpacing: value,
+      driver: "spacing",
+    });
   };
 
   const handleGirdersChange = (event) => {
     const value = event.target.value;
     setLastGeometryDriver("girders");
-    setNumberOfGirders(value);
-    syncFromGirders(value, deckOverhangWidth);
+    syncAdditionalGeometry({
+      nextGirders: value,
+      driver: "girders",
+    });
   };
 
   const handleOverhangChange = (event) => {
     const value = event.target.value;
     setLastGeometryDriver("overhang");
-    setDeckOverhangWidth(value);
-
-    if (lastGeometryDriver === "girders" && girdersProvided) {
-      syncFromGirders(numberOfGirders, value);
-    } else {
-      syncFromSpacing(girderSpacing, value);
-    }
+    syncAdditionalGeometry({
+      nextSpacing: lastGeometryDriver === "spacing" ? girderSpacing : "",
+      nextGirders: lastGeometryDriver === "girders" ? numberOfGirders : "",
+      nextOverhang: value,
+      driver: "overhang",
+    });
   };
 
   return (
@@ -212,20 +261,16 @@ function Sidebar({
 
         {showStructureMenu && (
           <div className="type-menu">
-            <button
-              type="button"
-              className="type-menu-item"
-              onClick={() => handleStructureSelect("Highway")}
-            >
-              Highway
-            </button>
-            <button
-              type="button"
-              className="type-menu-item"
-              onClick={() => handleStructureSelect("Other")}
-            >
-              Other
-            </button>
+            {structureTypes.map((option) => (
+              <button
+                key={option}
+                type="button"
+                className="type-menu-item"
+                onClick={() => handleStructureSelect(option)}
+              >
+                {option}
+              </button>
+            ))}
           </div>
         )}
       </div>
@@ -274,7 +319,9 @@ function Sidebar({
               onChange={(event) => setSpan(event.target.value)}
               disabled={isOther}
             />
-            {spanError && <p className="field-error">{spanError}</p>}
+            {geometryErrors.span && (
+              <p className="field-error">{geometryErrors.span}</p>
+            )}
           </div>
 
           <div className="geometry-field">
@@ -288,8 +335,8 @@ function Sidebar({
               onChange={(event) => setCarriagewayWidth(event.target.value)}
               disabled={isOther}
             />
-            {carriagewayError && (
-              <p className="field-error">{carriagewayError}</p>
+            {geometryErrors.carriageway_width && (
+              <p className="field-error">{geometryErrors.carriageway_width}</p>
             )}
           </div>
 
@@ -309,27 +356,16 @@ function Sidebar({
 
               {showFootpathMenu && (
                 <div className="project-dropdown-menu">
-                  <button
-                    type="button"
-                    className="project-dropdown-item"
-                    onClick={() => handleFootpathSelect("Single-sided")}
-                  >
-                    Single-sided
-                  </button>
-                  <button
-                    type="button"
-                    className="project-dropdown-item"
-                    onClick={() => handleFootpathSelect("Both")}
-                  >
-                    Both
-                  </button>
-                  <button
-                    type="button"
-                    className="project-dropdown-item"
-                    onClick={() => handleFootpathSelect("None")}
-                  >
-                    None
-                  </button>
+                  {footpathOptions.map((option) => (
+                    <button
+                      key={option}
+                      type="button"
+                      className="project-dropdown-item"
+                      onClick={() => handleFootpathSelect(option)}
+                    >
+                      {option}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
@@ -344,9 +380,15 @@ function Sidebar({
               onChange={(event) => setSkewAngle(event.target.value)}
               disabled={isOther}
             />
-            {skewAngleError && <p className="field-error">{skewAngleError}</p>}
+            {geometryErrors.skew_angle && (
+              <p className="field-error">{geometryErrors.skew_angle}</p>
+            )}
           </div>
         </div>
+
+        {geometryApiError && (
+          <p className="field-error sidebar-api-error">{geometryApiError}</p>
+        )}
       </div>
 
       <div
@@ -374,7 +416,7 @@ function Sidebar({
 
               {showGirderMenu && (
                 <div className="project-dropdown-menu">
-                  {["E250", "E350", "E450"].map((grade) => (
+                  {materialOptions.girder.map((grade) => (
                     <button
                       key={grade}
                       type="button"
@@ -408,7 +450,7 @@ function Sidebar({
 
               {showCrossBracingMenu && (
                 <div className="project-dropdown-menu">
-                  {["E250", "E350", "E450"].map((grade) => (
+                  {materialOptions.cross_bracing.map((grade) => (
                     <button
                       key={grade}
                       type="button"
@@ -442,23 +484,25 @@ function Sidebar({
 
               {showDeckMenu && (
                 <div className="project-dropdown-menu">
-                  {["M25", "M30", "M35", "M40", "M45", "M50", "M55", "M60"].map(
-                    (grade) => (
-                      <button
-                        key={grade}
-                        type="button"
-                        className="project-dropdown-item"
-                        onClick={() => handleDeckSelect(grade)}
-                      >
-                        {grade}
-                      </button>
-                    )
-                  )}
+                  {materialOptions.deck.map((grade) => (
+                    <button
+                      key={grade}
+                      type="button"
+                      className="project-dropdown-item"
+                      onClick={() => handleDeckSelect(grade)}
+                    >
+                      {grade}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
           </div>
         </div>
+
+        {basicOptionsError && (
+          <p className="field-error sidebar-api-error">{basicOptionsError}</p>
+        )}
       </div>
 
       {showGeometryModal && (
@@ -504,7 +548,9 @@ function Sidebar({
             </div>
 
             {geometryModalError && (
-              <p className="field-error geometry-modal-error">{geometryModalError}</p>
+              <p className="field-error geometry-modal-error">
+                {geometryModalError}
+              </p>
             )}
 
             <div className="custom-modal-actions">
