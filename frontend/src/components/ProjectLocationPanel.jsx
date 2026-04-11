@@ -191,7 +191,7 @@ function ProjectLocationPanel({
               className="project-option project-option-button"
               onClick={() => setLocationMode("location")}
             >
-              <span className="project-bullet" aria-hidden="true" />
+              <span className={`project-bullet ${locationMode === "location" ? "project-bullet-active" : ""}`} aria-hidden="true" />
               <span>Enter Location Name</span>
             </button>
 
@@ -280,7 +280,7 @@ function ProjectLocationPanel({
 
           {locationMode === "location" && result && (
             <div className="project-result-box">
-              <p>IRC 6 (2017) Resulting Values:</p>
+              <p style={{ textDecoration: "underline" }}>IRC 6 (2017) Resulting Values:</p>
               <p>Basic Wind Speed: {result.wind}</p>
               <p>
                 Seismic Zone and Zone Factor: {result.seismic_zone},{" "}
@@ -309,7 +309,7 @@ function ProjectLocationPanel({
             className="project-option project-option-button"
             onClick={openCustomModal}
           >
-            <span className="project-bullet" aria-hidden="true" />
+            <span className={`project-bullet ${locationMode === "custom" ? "project-bullet-active" : ""}`} aria-hidden="true" />
             <span>Tabulate Custom Loading Parameters</span>
           </button>
         </div>

@@ -1,0 +1,783 @@
+{
+    "Uttar Pradesh": {
+        "Agra": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Bahraich": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone IV",
+            "zone_factor": "0.24",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Bareilly": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Gorakhpur": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Jhansi": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Kanpur": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Lucknow": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Moradabad": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Varanasi": {
+            "wind": "50 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Allahabad": {
+            "wind": "N/A",
+            "seismic_zone": "Zone II",
+            "zone_factor": "0.10",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Gujarat": {
+        "Ahmedabad": {
+            "wind": "39 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Bhuj": {
+            "wind": "50 m/sec",
+            "seismic_zone": "Zone V",
+            "zone_factor": "0.36",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Rajkot": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Surat": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Vadodara": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Rajasthan": {
+        "Ajmer": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone II",
+            "zone_factor": "0.10",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Bikaner": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Jaipur": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone II",
+            "zone_factor": "0.10",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Jodhpur": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Udaipur": {
+            "wind": "44 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Uttarakhand": {
+        "Almora": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone IV",
+            "zone_factor": "0.24",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Dehradun": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Nainital": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Roorkee": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Punjab": {
+        "Amritsar": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone IV",
+            "zone_factor": "0.24",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Bhatinda": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Ludhiana": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Patiala": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "West Bengal": {
+        "Asansol": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Darjeeling": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Durgapur": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Kolkata": {
+            "wind": "50 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Maharashtra": {
+        "Aurangabad": {
+            "wind": "39 m/sec",
+            "seismic_zone": "Zone II",
+            "zone_factor": "0.10",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Mumbai": {
+            "wind": "44 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Nagpur": {
+            "wind": "44 m/sec",
+            "seismic_zone": "Zone II",
+            "zone_factor": "0.10",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Nasik": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Pune": {
+            "wind": "39 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Karnataka": {
+        "Bengaluru": {
+            "wind": "33 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Mangalore": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Mysore": {
+            "wind": "33 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Bihar": {
+        "Barauni": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Darbhanga": {
+            "wind": "55 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Gaya": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Patna": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Chhattisgarh": {
+        "Bhilai": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Raipur": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Madhya Pradesh": {
+        "Bhopal": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Jabalpur": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Odisha": {
+        "Bhubaneswar": {
+            "wind": "50 m/sec",
+            "seismic_zone": "Zone III",
+            "zone_factor": "0.16",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Cuttack": {
+            "wind": "50 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Rourkela": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Jharkhand": {
+        "Bokaro": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Jamshedpur": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Ranchi": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Chandigarh": {
+        "Chandigarh": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Tamil Nadu": {
+        "Chennai": {
+            "wind": "50 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Coimbatore": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Madurai": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Tiruchirappalli": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Delhi": {
+        "Delhi": {
+            "wind": "47 m/sec",
+            "seismic_zone": "Zone IV",
+            "zone_factor": "0.24",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Sikkim": {
+        "Gangtok": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Assam": {
+        "Guwahati": {
+            "wind": "50 m/sec",
+            "seismic_zone": "Zone V",
+            "zone_factor": "0.36",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Telangana": {
+        "Hyderabad": {
+            "wind": "44 m/sec",
+            "seismic_zone": "Zone II",
+            "zone_factor": "0.10",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Manipur": {
+        "Imphal": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Nagaland": {
+        "Kohima": {
+            "wind": "44 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Kerala": {
+        "Kozhikode": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Trivandrum": {
+            "wind": "47 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Andhra Pradesh": {
+        "Kurnool": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "6.7\u00b0C",
+            "max_temp": "45.6\u00b0C"
+        },
+        "Nellore": {
+            "wind": "50 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "11.1\u00b0C",
+            "max_temp": "46.7\u00b0C"
+        },
+        "Vijayawada": {
+            "wind": "50 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Visakhapatnam": {
+            "wind": "50 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "10.5\u00b0C",
+            "max_temp": "45.4\u00b0C"
+        },
+        "Anantapur": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "9.4\u00b0C",
+            "max_temp": "44.1\u00b0C"
+        },
+        "Arogyavaram": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "8\u00b0C",
+            "max_temp": "40.6\u00b0C"
+        },
+        "Bapatla": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "11.1\u00b0C",
+            "max_temp": "47.4\u00b0C"
+        },
+        "Cuddapah": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "10\u00b0C",
+            "max_temp": "46.1\u00b0C"
+        },
+        "Gannavaram (A)": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "8.5\u00b0C",
+            "max_temp": "48.8\u00b0C"
+        },
+        "Kakinada": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "12\u00b0C",
+            "max_temp": "47.2\u00b0C"
+        },
+        "Kalingapatanam": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "10.3\u00b0C",
+            "max_temp": "46.2\u00b0C"
+        },
+        "Kavali": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "16.4\u00b0C",
+            "max_temp": "47.2\u00b0C"
+        },
+        "Masulipatnam": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "13.2\u00b0C",
+            "max_temp": "47.8\u00b0C"
+        },
+        "Nandigama": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "9.3\u00b0C",
+            "max_temp": "47.1\u00b0C"
+        },
+        "Nandyal": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "9.2\u00b0C",
+            "max_temp": "48.2\u00b0C"
+        },
+        "Narsapur": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "14.6\u00b0C",
+            "max_temp": "46.1\u00b0C"
+        },
+        "Nidadavolu": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "11.4\u00b0C",
+            "max_temp": "48.9\u00b0C"
+        },
+        "Ongole": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "14\u00b0C",
+            "max_temp": "47.4\u00b0C"
+        },
+        "Rentachintala": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "9.4\u00b0C",
+            "max_temp": "49.9\u00b0C"
+        },
+        "Tirmalai": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "3.6\u00b0C",
+            "max_temp": "37.6\u00b0C"
+        },
+        "Tirupathy": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "12.9\u00b0C",
+            "max_temp": "45.2\u00b0C"
+        },
+        "Tuni": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "13.9\u00b0C",
+            "max_temp": "47.5\u00b0C"
+        }
+    },
+    "Lakshadweep": {
+        "Lakshadweep": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Himachal Pradesh": {
+        "Mandi": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        },
+        "Shimla": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Goa": {
+        "Panjim": {
+            "wind": "39 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Puducherry": {
+        "Puducherry": {
+            "wind": "50 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Andaman and Nicobar Islands": {
+        "Port Blair": {
+            "wind": "44 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "14.6\u00b0C",
+            "max_temp": "36.4\u00b0C"
+        },
+        "Car-Nicobar": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "10.9\u00b0C",
+            "max_temp": "38.1\u00b0C"
+        },
+        "Hut Bay": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "0.2\u00b0C",
+            "max_temp": "39.4\u00b0C"
+        },
+        "Kondul": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "14\u00b0C",
+            "max_temp": "47.2\u00b0C"
+        },
+        "Long Island": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "14.6\u00b0C",
+            "max_temp": "43.1\u00b0C"
+        },
+        "Mayabandar": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "14\u00b0C",
+            "max_temp": "39\u00b0C"
+        },
+        "Nancowry": {
+            "wind": "N/A",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "13.9\u00b0C",
+            "max_temp": "39.2\u00b0C"
+        }
+    },
+    "Jammu and Kashmir": {
+        "Srinagar": {
+            "wind": "44 m/sec",
+            "seismic_zone": "N/A",
+            "zone_factor": "N/A",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    },
+    "Haryana": {
+        "Ambala": {
+            "wind": "N/A",
+            "seismic_zone": "Zone IV",
+            "zone_factor": "0.24",
+            "min_temp": "N/A",
+            "max_temp": "N/A"
+        }
+    }
+}

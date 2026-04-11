@@ -343,9 +343,13 @@ body {
 .project-bullet {
   width: 18px;
   height: 18px;
-  background: #f77a14;
+  background: #fff;
   border: 1px solid black;
   flex-shrink: 0;
+}
+
+.project-bullet-active {
+  background: #f77a14;
 }
 
 .project-result-box {

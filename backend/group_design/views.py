@@ -3,42 +3,17 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-LOCATION_DATA = {
-    "Maharashtra": {
-        "Mumbai": {
-            "wind": "44 m/sec",
-            "seismic_zone": "Zone III",
-            "zone_factor": "0.16",
-            "min_temp": "22°C",
-            "max_temp": "38°C",
-        },
-        "Pune": {
-            "wind": "39 m/sec",
-            "seismic_zone": "Zone III",
-            "zone_factor": "0.16",
-            "min_temp": "18°C",
-            "max_temp": "36°C",
-        },
-    },
-    "Karnataka": {
-        "Bengaluru": {
-            "wind": "33 m/sec",
-            "seismic_zone": "Zone II",
-            "zone_factor": "0.10",
-            "min_temp": "19°C",
-            "max_temp": "34°C",
-        },
-    },
-    "Delhi": {
-        "Central Delhi": {
-            "wind": "47 m/sec",
-            "seismic_zone": "Zone IV",
-            "zone_factor": "0.24",
-            "min_temp": "7°C",
-            "max_temp": "43°C",
-        },
-    },
-}
+import json
+import os
+from django.conf import settings
+
+# Load the generated JSON database
+DATABASE_PATH = os.path.join(settings.BASE_DIR, "data", "processed", "location_database.json")
+try:
+    with open(DATABASE_PATH, "r") as f:
+        LOCATION_DATA = json.load(f)
+except Exception:
+    LOCATION_DATA = {}
 
 MATERIAL_OPTIONS = {
     "girder": ["E250", "E350", "E450"],
